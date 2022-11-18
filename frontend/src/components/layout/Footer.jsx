@@ -62,9 +62,9 @@ const Footer = () => {
           Copyright © 2022 - <span className="font-cubano">Kodekuma</span>
         </p>
         <p>
-          created by{" "}
+          Created by{" "}
           <a href="/" className="link link-hover">
-            Prasanna Raj Karki
+            prasannakarki77
           </a>
         </p>
       </div>

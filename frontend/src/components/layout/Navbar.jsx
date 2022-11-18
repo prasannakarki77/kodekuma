@@ -4,12 +4,12 @@ import { FaGithub } from "react-icons/fa";
 import { GiBearFace } from "react-icons/gi";
 import { MdVideoSettings, MdLeaderboard } from "react-icons/md";
 import { RiCodeBoxFill } from "react-icons/ri";
-import logo from "./assets/logo.svg";
+import logo from "../../assets/logo.svg";
 const Navbar = () => {
   return (
     <nav className="navbar mb-12 shadow-sm bg-base-200 text-neutral-content py-2 ">
       <div className=" w-full mx-auto flex justify-between items-center">
-        <div className="flex items-center px-2 mx-0 sm:mx-2 sm:w-auto  min-w-[60px] ">
+        <div className="flex items-center px-2 mx-0 sm:mx-2 sm:w-[170px]  w-[60px] ">
           <img src={logo} alt="logo" className="w-13" />
           <Link
             to="/"
@@ -48,10 +48,12 @@ const Navbar = () => {
           </Link>
         </div>
 
-        <div className=" mx-0 sm:mx-2">
+        <div className="x-2 mx-0 sm:mx-2  sm:w-[170px]  w-[60px]">
           <div className="flex justify-end">
             <button className="btn sm:btn-outline btn-ghost">
-              <span className="sm:inline hidden">Sign In</span>{" "}
+              <span className="sm:inline hidden font-bold font-poppins  capitalize ">
+                Sign In
+              </span>{" "}
               <FaGithub className="inline sm:pl-2 pl-0 sm:text-3xl text-2xl" />
             </button>
           </div>
