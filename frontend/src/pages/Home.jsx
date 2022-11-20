@@ -163,9 +163,9 @@ const Home = () => {
       <h1 className="text-center font-cubano sm:text-2xl text-xl text-primary-content max-w-2xl mx-auto mb-24 ">
         Practice languages, frameworks and tools
       </h1>
-      <div class="grid grid-cols-5 gap-2 place-items-center h-56 mb-12">
-        {techList.map((tech) => (
-          <div>
+      <div className="grid grid-cols-5 gap-2 place-items-center h-56 mb-12">
+        {techList.map((tech, i) => (
+          <div key={i}>
             <img src={tech} alt={`${tech}__logo`} className=" w-12 h-12" />
           </div>
         ))}
