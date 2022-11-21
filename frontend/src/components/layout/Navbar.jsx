@@ -1,10 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FaGithub } from "react-icons/fa";
+import { FaGithub, FaUserAstronaut } from "react-icons/fa";
 import { GiBearFace } from "react-icons/gi";
 import { MdVideoSettings, MdLeaderboard } from "react-icons/md";
 import { RiCodeBoxFill } from "react-icons/ri";
+import { HiOutlineLogout } from "react-icons/hi";
+import { AiOutlineSetting } from "react-icons/ai";
 import logo from "../../assets/logo.svg";
+import { useContext } from "react";
+import UserContext from "../../context/UserContext";
 const Navbar = () => {
   const login = () => {
     window.open("http://localhost:5000/auth/github", "_self");
@@ -12,6 +16,7 @@ const Navbar = () => {
   const logout = () => {
     window.open("http://localhost:5000/auth/logout", "_self");
   };
+  const { user } = useContext(UserContext);
   return (
     <nav className="navbar mb-12 shadow-sm bg-base-200 text-neutral-content py-2 ">
       <div className=" w-full mx-auto flex justify-between items-center">
@@ -56,17 +61,46 @@ const Navbar = () => {
 
         <div className="x-2 mx-0 sm:mx-2  sm:w-[170px]  w-[60px]">
           <div className="flex justify-end">
-            <button className="btn sm:btn-outline btn-ghost" onClick={login}>
-              <span className="sm:inline hidden font-bold font-poppins  capitalize ">
-                Sign In
-              </span>{" "}
-              <FaGithub className="inline sm:pl-2 pl-0 sm:text-3xl text-2xl" />
-            </button>
-            <button className="btn sm:btn-outline btn-ghost" onClick={logout}>
-              <span className="sm:inline hidden font-bold font-poppins  capitalize ">
-                Logout
-              </span>{" "}
-            </button>
+            {user.length !== 0 ? (
+              <div className="dropdown dropdown-end">
+                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                  <div className="w-10 rounded ">
+                    <img src={user.photos[0].value} alt="profile_pic" />
+                  </div>{" "}
+                </label>
+                <ul
+                  tabIndex={0}
+                  className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-200 rounded-box w-52"
+                >
+                  <li>
+                    <Link to="profile">
+                      <FaUserAstronaut />
+                      Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="settings">
+                      <AiOutlineSetting />
+                      Settings
+                    </Link>
+                  </li>
+                  <li>
+                    <button onClick={logout}>
+                      {" "}
+                      <HiOutlineLogout />
+                      Logout
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            ) : (
+              <button className="btn sm:btn-outline btn-ghost" onClick={login}>
+                <span className="sm:inline hidden font-bold font-poppins  capitalize ">
+                  Sign In
+                </span>{" "}
+                <FaGithub className="inline sm:pl-2 pl-0 sm:text-3xl text-2xl" />
+              </button>
+            )}
           </div>
         </div>
       </div>
