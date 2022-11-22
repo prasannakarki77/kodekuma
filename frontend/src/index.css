@@ -13,3 +13,43 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+.blue-gradient {
+  background: linear-gradient(
+    90deg,
+    #78b3f9 2.97%,
+    #a0f8e8 26.26%,
+    #1580ff 54.03%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.purple-gradient {
+  background: linear-gradient(
+    90deg,
+    #985fbb 4.23%,
+    rgba(255, 255, 255, 0.79525) 28.77%,
+    rgba(202, 134, 255, 0.58) 54.58%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.red-gradient {
+  background: linear-gradient(
+    90deg,
+    #ff2626 4.23%,
+    rgba(255, 48, 48, 0.989938) 5.44%,
+    rgba(255, 255, 255, 0.79525) 28.77%,
+    rgba(235, 118, 34, 0.58) 54.58%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}

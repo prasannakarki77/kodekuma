@@ -2,7 +2,6 @@ const asyncHandler = require("express-async-handler");
 
 // @desc Github Login Success
 // @route /auth
-
 const loginSuccess = asyncHandler(async (req, res) => {
   if (req.user) {
     res.status(200).json({

@@ -6,10 +6,14 @@ const connectDB = require("./config/db");
 const cookieSession = require("cookie-session");
 const passportSetup = require("./auth/passport");
 const passport = require("passport");
-const authRoute = require("./routes/authRoutes");
 const PORT = process.env.PORT || 8000;
 const cors = require("cors");
 const app = express();
+
+// Routes
+const authRoute = require("./routes/authRoutes");
+const resourceRoute = require("./routes/resourceRoutes");
+
 // Connect to database
 connectDB();
 
@@ -31,17 +35,11 @@ app.use(
     credentials: true,
   })
 );
-
-app.use("/auth", authRoute);
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.get("/", (req, res) => {
-  res.status(200).json({ message: "Welcome to the support desk" });
-});
-
-app.use("/api/users", require("./routes/userRoutes"));
+app.use("/auth", authRoute);
+app.use("/resource", resourceRoute);
 
 app.use(errorHandler);
 
