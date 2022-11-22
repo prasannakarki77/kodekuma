@@ -31,7 +31,7 @@ const Navbar = () => {
         </div>
         <div className=" px-2 mx-2 flex-1 justify-center items-center text-center">
           <Link
-            to="/"
+            to="/resources"
             className="btn btn-ghost btn-md rounded-btn font-cubano text-lg  tracking-wider"
           >
             <MdVideoSettings className="text-2xl " />{" "}
