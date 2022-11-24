@@ -4,7 +4,17 @@ import { CgWebsite } from "react-icons/cg";
 import { GoDeviceMobile } from "react-icons/go";
 import { BsUiChecks } from "react-icons/bs";
 import { FaDesktop } from "react-icons/fa";
+import { useState, useEffect } from "react";
+import axios from "axios";
 const Resources = () => {
+  const [resources, setResources] = useState([]);
+  useEffect(() => {
+    axios.get("http://localhost:5000/resource/get").then((res) => {
+      console.log(res.data);
+      setResources(res.data.data);
+      console.log(resources);
+    });
+  }, []);
   return (
     <>
       <div className="my-6 p-5 ">
@@ -15,9 +25,10 @@ const Resources = () => {
           </span>
         </h1>
         <div className="flex flex-col justify-center items-center sm:justify-between  flex-wrap md:flex-row">
-          <ResourceCard />
-          <ResourceCard />
-          <ResourceCard />
+          {resources.map(
+            (resource) =>
+              resource.type === "web" && <ResourceCard resource={resource} />
+          )}
         </div>
       </div>
       <div className="my-6 p-5 ">
@@ -29,9 +40,10 @@ const Resources = () => {
           </span>
         </h1>
         <div className="flex flex-col justify-center items-center sm:justify-between  flex-wrap md:flex-row">
-          <ResourceCard />
-          <ResourceCard />
-          <ResourceCard />
+          {resources.map(
+            (resource) =>
+              resource.type === "mobile" && <ResourceCard resource={resource} />
+          )}
         </div>
       </div>
       <div className="my-6 p-5 ">
@@ -42,9 +54,12 @@ const Resources = () => {
           </span>
         </h1>
         <div className="flex flex-col justify-center items-center sm:justify-between  flex-wrap md:flex-row">
-          <ResourceCard />
-          <ResourceCard />
-          <ResourceCard />
+          {resources.map(
+            (resource) =>
+              resource.type === "desktop" && (
+                <ResourceCard resource={resource} />
+              )
+          )}
         </div>
       </div>
       <div className="my-6 p-5 ">
@@ -56,9 +71,12 @@ const Resources = () => {
           </span>
         </h1>
         <div className="flex flex-col justify-center items-center sm:justify-between  flex-wrap md:flex-row">
-          <ResourceCard />
-          <ResourceCard />
-          <ResourceCard />
+          {resources.map(
+            (resource) =>
+              resource.type === "desktop" && (
+                <ResourceCard resource={resource} />
+              )
+          )}
         </div>
       </div>
     </>

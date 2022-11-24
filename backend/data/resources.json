@@ -1,16 +1,44 @@
 [
   {
-    "name": "Freecodecamp",
+    "name": "Freecodecamp1",
     "link": "https://www.freecodecamp.org/",
     "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eget hendrerit lectus tellus egestas. Id interdum pellentesque sed sed fringilla urna. Rhoncus, sit fringilla quis amet.",
     "tags": ["HTML", "CSS", "JS"],
-    "type": "web development"
+    "type": "web"
   },
   {
-    "name": "Freecodecamp",
+    "name": "Freecodecamp11",
     "link": "https://www.freecodecamp.org/",
     "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eget hendrerit lectus tellus egestas. Id interdum pellentesque sed sed fringilla urna. Rhoncus, sit fringilla quis amet.",
     "tags": ["HTML", "CSS", "JS"],
-    "type": "web development"
+    "type": "desktop"
+  },
+  {
+    "name": "Freecodecamp2",
+    "link": "https://www.freecodecamp.org/",
+    "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eget hendrerit lectus tellus egestas. Id interdum pellentesque sed sed fringilla urna. Rhoncus, sit fringilla quis amet.",
+    "tags": ["HTML", "CSS", "JS"],
+    "type": "mobile"
+  },
+  {
+    "name": "Freecodecamp3",
+    "link": "https://www.freecodecamp.org/",
+    "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eget hendrerit lectus tellus egestas. Id interdum pellentesque sed sed fringilla urna. Rhoncus, sit fringilla quis amet.",
+    "tags": ["HTML", "CSS", "JS"],
+    "type": "web"
+  },
+  {
+    "name": "Freecodecamp4",
+    "link": "https://www.freecodecamp.org/",
+    "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eget hendrerit lectus tellus egestas. Id interdum pellentesque sed sed fringilla urna. Rhoncus, sit fringilla quis amet.",
+    "tags": ["HTML", "CSS", "JS"],
+    "type": "desktop"
+  },
+  {
+    "name": "Freecodecamp53",
+    "link": "https://www.freecodecamp.org/",
+    "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eget hendrerit lectus tellus egestas. Id interdum pellentesque sed sed fringilla urna. Rhoncus, sit fringilla quis amet.",
+    "tags": ["HTML", "CSS", "JS"],
+    "type": "mobile"
   }
 ]

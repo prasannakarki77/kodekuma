@@ -1,32 +1,29 @@
 import React from "react";
 import { BiLinkExternal } from "react-icons/bi";
-const ResourceCard = () => {
+const ResourceCard = ({ resource }) => {
+  const { name, link, desc, tags } = resource;
   return (
-    <div className="card w-full bg-base-300 shadow-xl mb-6 sm:w-96 ">
+    <div className="card w-full bg-base-300 shadow-xl mb-6 sm:w-96 hover:-translate-y-1 transition-all ">
       <figure>
         <img
-          src="https://global.discourse-cdn.com/freecodecamp/optimized/3X/7/f/7f87f7949b64a12f1e5feb7ff9d2ac4ae83383ad_2_1024x469.jpeg"
+          src="https://global.discourse-cdn.com/freecodecamp/optimized/4X/8/6/e/86e217d033a69a07c2270779df20f1b4e53defe8_2_690x387.png"
           alt="Shoes"
         />
       </figure>
       <div className="card-body">
         <a
           className="card-title link link-hover js "
-          href="https://www.freecodecamp.org/"
+          href={link}
           target="_blank"
           rel="noopener noreferrer"
         >
-          Freecodecamp <BiLinkExternal />
+          {name} <BiLinkExternal />
         </a>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eget
-          hendrerit lectus tellus egestas. Id interdum pellentesque sed sed
-          fringilla urna. Rhoncus, sit fringilla quis amet.
-        </p>
+        <p>{desc}</p>
         <div className="card-actions justify-end">
-          <div className="badge badge-outline">HTML</div>
-          <div className="badge badge-outline">CSS</div>
-          <div className="badge badge-outline">JS</div>
+          {tags.map((tag) => (
+            <div className="badge badge-outline">{tag}</div>
+          ))}
         </div>
       </div>
     </div>
