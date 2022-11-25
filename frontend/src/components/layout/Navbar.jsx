@@ -40,7 +40,7 @@ const Navbar = () => {
             </span>
           </Link>
           <Link
-            to="/about"
+            to="/challenges"
             className="btn btn-ghost btn-md rounded-btn font-cubano text-lg  tracking-wider"
           >
             <RiCodeBoxFill className="text-2xl " />{" "}

@@ -7,6 +7,9 @@ module.exports = {
         cubano: ["Cubano", "sans-serif"],
         poppins: ["Poppins", "sans-serif"],
       },
+      colors: {
+        challenge: "#06CD3E",
+      },
     },
   },
   plugins: [require("daisyui")],
