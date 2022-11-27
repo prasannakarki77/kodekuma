@@ -7,11 +7,32 @@
     "type": "web"
   },
   {
+    "name": "Freecodecamp1",
+    "link": "https://www.freecodecamp.org/",
+    "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eget hendrerit lectus tellus egestas. Id interdum pellentesque sed sed fringilla urna. Rhoncus, sit fringilla quis amet.",
+    "tags": ["HTML", "CSS", "JS"],
+    "type": "web"
+  },
+  {
     "name": "Freecodecamp11",
     "link": "https://www.freecodecamp.org/",
     "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eget hendrerit lectus tellus egestas. Id interdum pellentesque sed sed fringilla urna. Rhoncus, sit fringilla quis amet.",
     "tags": ["HTML", "CSS", "JS"],
     "type": "desktop"
+  },
+  {
+    "name": "Freecodecamp11",
+    "link": "https://www.freecodecamp.org/",
+    "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eget hendrerit lectus tellus egestas. Id interdum pellentesque sed sed fringilla urna. Rhoncus, sit fringilla quis amet.",
+    "tags": ["HTML", "CSS", "JS"],
+    "type": "desktop"
+  },
+  {
+    "name": "Freecodecamp2",
+    "link": "https://www.freecodecamp.org/",
+    "desc": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eget hendrerit lectus tellus egestas. Id interdum pellentesque sed sed fringilla urna. Rhoncus, sit fringilla quis amet.",
+    "tags": ["HTML", "CSS", "JS"],
+    "type": "mobile"
   },
   {
     "name": "Freecodecamp2",

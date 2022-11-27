@@ -53,7 +53,7 @@ const Challenges = () => {
                   developer.
                 </li>
               </ul>
-              <Link>
+              <Link to="/web_challenges">
                 {" "}
                 <button className="font-cubano text-base sm:text-lg w-full btn hover:bg-green-600  tracking-widest leading-5 bg-challenge  text-white sm:mb-0 ">
                   View Challenges
@@ -66,7 +66,7 @@ const Challenges = () => {
       <div className="bg-base-300  p-3 sm:p-5 rounded-xl max-w-6xl mx-auto  pb-8 sm:pb-8 mb-8">
         <div>
           <h1 className=" font-cubano text-primary-content    mb-10   text-lg sm:text-2xl flex items-center ">
-            <CgWebsite className=" mr-2 text-3xl " />
+            <GoDeviceMobile className=" mr-2 text-3xl " />
             <span>
               <span className="green-gradient">Mobile App Development</span>{" "}
               challenges
@@ -90,15 +90,14 @@ const Challenges = () => {
                   Frontend , backend and fullstack incorporated challenges.
                 </li>
                 <li className="text-base sm:text-lg font-semibold">
-                  Practice HTML, CSS, JS, along with different libraries and
-                  frameworks
+                  Practice Kotlin/Flutter/Swift to develop mobile applications
                 </li>
                 <li className="text-base sm:text-lg font-semibold">
                   Work with APIs and backend technologies to complete difficult
                   challenges.
                 </li>
                 <li className="text-base sm:text-lg font-semibold">
-                  Build your portfolio projects to become a professional web
+                  Build your portfolio projects professional mobile app
                   developer.
                 </li>
               </ul>
@@ -115,7 +114,7 @@ const Challenges = () => {
       <div className="bg-base-300  p-3 sm:p-5 rounded-xl max-w-6xl mx-auto  pb-8 sm:pb-8 mb-8">
         <div>
           <h1 className=" font-cubano text-primary-content    mb-10   text-lg sm:text-2xl flex items-center ">
-            <CgWebsite className=" mr-2 text-3xl " />
+            <BsUiChecks className=" mr-2 text-3xl " />
             <span>
               <span className="purple-gradient">UX/UI Design </span> challenges
             </span>
@@ -135,19 +134,19 @@ const Challenges = () => {
               </p>
               <ul className=" list-disc ml-5 mb-7 ">
                 <li className="text-base sm:text-lg font-semibold">
-                  Frontend , backend and fullstack incorporated challenges.
+                  Software UI/UX design recreation challenges
                 </li>
                 <li className="text-base sm:text-lg font-semibold">
-                  Practice HTML, CSS, JS, along with different libraries and
-                  frameworks
+                  Practice Figma, Adobe XD, Photoshop to design applications
+                  prototypes
                 </li>
                 <li className="text-base sm:text-lg font-semibold">
                   Work with APIs and backend technologies to complete difficult
                   challenges.
                 </li>
                 <li className="text-base sm:text-lg font-semibold">
-                  Build your portfolio projects to become a professional web
-                  developer.
+                  Build your portfolio projects to become a professional mobile
+                  app developer.
                 </li>
               </ul>
               <Link>
@@ -163,9 +162,9 @@ const Challenges = () => {
       <div className="bg-base-300  p-3 sm:p-5 rounded-xl max-w-6xl mx-auto  pb-8 sm:pb-8 mb-8">
         <div>
           <h1 className=" font-cubano text-primary-content    mb-10   text-lg sm:text-2xl flex items-center ">
-            <CgWebsite className=" mr-2 text-3xl " />
+            <FaDesktop className=" mr-2 text-3xl " />
             <span>
-              <span className="purple-gradient">desktop App Development </span>{" "}
+              <span className="red-gradient">desktop App Development </span>{" "}
               challenges
             </span>
           </h1>
@@ -184,7 +183,7 @@ const Challenges = () => {
               </p>
               <ul className=" list-disc ml-5 mb-7 ">
                 <li className="text-base sm:text-lg font-semibold">
-                  Frontend , backend and fullstack incorporated challenges.
+                  Software UI/UX design recreation challenges
                 </li>
                 <li className="text-base sm:text-lg font-semibold">
                   Practice HTML, CSS, JS, along with different libraries and

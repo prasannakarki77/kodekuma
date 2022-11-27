@@ -41,7 +41,7 @@ const Home = () => {
     xd,
   ];
   return (
-    <div className="p-2">
+    <div className="p-2  ">
       <h1 className="text-center font-cubano sm:text-2xl text-xl text-primary-content max-w-lg mx-auto mb-12">
         Practice software development skills through{" "}
         <span className="green-gradient">challenges</span>{" "}
