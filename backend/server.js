@@ -13,6 +13,7 @@ const app = express();
 // Routes
 const authRoute = require("./routes/authRoutes");
 const resourceRoute = require("./routes/resourceRoutes");
+const challengeRoute = require("./routes/challengeRoutes")
 
 // Connect to database
 connectDB();
@@ -40,7 +41,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/auth", authRoute);
 app.use("/resource", resourceRoute);
-
+app.use("/challenge",challengeRoute );
 app.use(errorHandler);
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));

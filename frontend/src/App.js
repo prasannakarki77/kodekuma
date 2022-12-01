@@ -3,6 +3,7 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import ChallengeList from "./components/ChallengeList";
 import Footer from "./components/layout/Footer";
 import Navbar from "./components/layout/Navbar";
+import Solutions from "./components/Solutions";
 import { UserProvider } from "./context/UserContext";
 import Challenges from "./pages/Challenges";
 import Home from "./pages/Home";
@@ -20,6 +21,7 @@ function App() {
             <Route path="/challenges" element={<Challenges />} />
             <Route path="/web_challenges" element={<WebChallenges />}>
               <Route path="" element={<ChallengeList />} />
+              <Route path="solutions" element={<Solutions />} />
             </Route>
             <Route path="/resources" element={<Resources />} />
             <Route path="/notfound" element={<NotFound />} />
