@@ -6,6 +6,7 @@ module.exports = {
       fontFamily: {
         cubano: ["Cubano", "sans-serif"],
         poppins: ["Poppins", "sans-serif"],
+        raleway: ["Raleway", "sans-serif"],
       },
       colors: {
         challenge: "#06CD3E",

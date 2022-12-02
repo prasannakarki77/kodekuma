@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import ChallengeList from "./components/ChallengeList";
 import Footer from "./components/layout/Footer";

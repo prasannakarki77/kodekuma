@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
 import ChallengeContext from "../context/ChallengeContext";
 const ChallengeCard = ({ challengeItem, number }) => {
   const { _id, challenge, image, desc, difficulty } = challengeItem;
