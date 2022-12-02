@@ -36,6 +36,10 @@ const Challenge = mongoose.Schema(
       type: String,
       required: true,
     },
+    number: {
+      type: Number,
+      required: true,
+    },
   },
   {
     timestamps: true,
