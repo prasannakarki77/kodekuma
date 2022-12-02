@@ -4,7 +4,9 @@ import ChallengeList from "./components/ChallengeList";
 import Footer from "./components/layout/Footer";
 import Navbar from "./components/layout/Navbar";
 import Solutions from "./components/Solutions";
+import { ChallengeProvider } from "./context/ChallengeContext";
 import { UserProvider } from "./context/UserContext";
+import Challenge from "./pages/Challenge";
 import Challenges from "./pages/Challenges";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
@@ -13,23 +15,26 @@ import WebChallenges from "./pages/WebChallenges";
 function App() {
   return (
     <>
-      <UserProvider>
-        <BrowserRouter>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/challenges" element={<Challenges />} />
-            <Route path="/web_challenges" element={<WebChallenges />}>
-              <Route path="" element={<ChallengeList />} />
-              <Route path="solutions" element={<Solutions />} />
-            </Route>
-            <Route path="/resources" element={<Resources />} />
-            <Route path="/notfound" element={<NotFound />} />
-            <Route path="/*" element={<NotFound />} />
-          </Routes>
-          <Footer />
-        </BrowserRouter>
-      </UserProvider>
+      <ChallengeProvider>
+        <UserProvider>
+          <BrowserRouter>
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/challenges" element={<Challenges />} />
+              <Route path="/web_challenges" element={<WebChallenges />}>
+                <Route path="" element={<ChallengeList />} />
+                <Route path="solutions" element={<Solutions />} />
+              </Route>
+              <Route path="/challenge/:id" element={<Challenge />} />
+              <Route path="/resources" element={<Resources />} />
+              <Route path="/notfound" element={<NotFound />} />
+              <Route path="/*" element={<NotFound />} />
+            </Routes>
+            <Footer />
+          </BrowserRouter>
+        </UserProvider>
+      </ChallengeProvider>
     </>
   );
 }
