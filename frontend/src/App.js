@@ -1,4 +1,5 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
+import ScrollToTop from "./scrollToTop/ScrollToTop";
 import ChallengeList from "./components/ChallengeList";
 import Footer from "./components/layout/Footer";
 import Navbar from "./components/layout/Navbar";
@@ -18,6 +19,7 @@ function App() {
         <UserProvider>
           <BrowserRouter>
             <Navbar />
+            <ScrollToTop />
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/challenges" element={<Challenges />} />

@@ -41,11 +41,11 @@ const ChallengeList = () => {
         </div>
       </div>
       <div className="flex justify-between flex-wrap ">
-        {challenges.map((challenge, i) => (
+        {challenges.map((challenge) => (
           <ChallengeCard
             key={challenge._id}
             challengeItem={challenge}
-            number={i + 1}
+           
           />
         ))}
       </div>
