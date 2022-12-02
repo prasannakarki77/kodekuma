@@ -1,7 +1,17 @@
 import React from "react";
+import { useEffect } from "react";
 import { AiFillSafetyCertificate } from "react-icons/ai";
 import ChallengeCard from "./ChallengeCard";
+import axios from "axios";
+import { useState } from "react";
 const ChallengeList = () => {
+  const [challenges, setChallenges] = useState([]);
+  useEffect(() => {
+    axios.get("http://localhost:5000/challenge/get_challenges").then((res) => {
+      setChallenges(res.data.data);
+      console.log(res.data.data);
+    });
+  }, []);
   return (
     <div>
       <div className=" flex justify-center flex-col mb-14 ">
@@ -31,10 +41,13 @@ const ChallengeList = () => {
         </div>
       </div>
       <div className="flex justify-between flex-wrap ">
-        <ChallengeCard />
-        <ChallengeCard />
-        <ChallengeCard />
-        <ChallengeCard />
+        {challenges.map((challenge, i) => (
+          <ChallengeCard
+            key={challenge._id}
+            challengeItem={challenge}
+            number={i + 1}
+          />
+        ))}
       </div>
     </div>
   );
