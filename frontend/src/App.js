@@ -12,9 +12,24 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Resources from "./pages/Resources";
 import WebChallenges from "./pages/WebChallenges";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
     <>
+      {" "}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
       <ChallengeProvider>
         <UserProvider>
           <BrowserRouter>

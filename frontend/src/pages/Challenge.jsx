@@ -6,11 +6,18 @@ import point_icon from "../assets/star.svg";
 import { CgFigma } from "react-icons/cg";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import axios from "axios";
+import UserContext from "../context/UserContext";
+import { toast } from "react-toastify";
+
 const Challenge = () => {
   const { id } = useParams();
   const { ChallengeLevel } = useContext(ChallengeContext);
   const [challenge, setChallenge] = useState({});
   const [requirements, setRequirements] = useState([]);
+  const [challengeStarted, setChallengeStarted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const { user } = useContext(UserContext);
+
   useEffect(() => {
     axios
       .get("http://localhost:5000/challenge/get_challenge/" + id)
@@ -20,6 +27,28 @@ const Challenge = () => {
         setRequirements(res.data.data[0].requirements);
       });
   }, []);
+
+  const startChallenge = () => {
+    console.log("ddsfsd");
+    console.log(user);
+    if (user.length === 0) {
+      toast.warning(" Please Sign In first. ", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      return;
+    }
+    setLoading(true);
+
+    setTimeout(() => setChallengeStarted(true), 2000);
+  };
+
   return (
     <div className=" max-w-[1152px] mx-auto px-4">
       <div className="flex justify-between items-center mb-6">
@@ -74,17 +103,28 @@ const Challenge = () => {
             <li className="mb-3 ml-4">Check figma design and start coding</li>
             <li className="mb-3 ml-4">Submit the solution</li>
           </ol>
-          {/* <button className="font-cubano text-base w-full btn loading hover:bg-green-600  tracking-widest leading-5 bg-challenge  text-white sm:mb-0 ">
-            Start challenge
-          </button> */}
-          <a href={challenge.figma_link} target="_blank" rel="noreferrer">
-            <button className="w-full  btn gap-2  btn-secondary font-poppins text-sm uppercase font-black tracking-wide mb-5">
-              <CgFigma size={20} /> Figma Design
+          {challengeStarted ? (
+            <>
+              {" "}
+              <a href={challenge.figma_link} target="_blank" rel="noreferrer">
+                <button className="w-full  btn gap-2  btn-secondary font-poppins text-sm uppercase font-black tracking-wide mb-5">
+                  <CgFigma size={20} /> Figma Design
+                </button>
+              </a>
+              <button className="w-full  btn gap-2  btn-accent btn-outline font-poppins text-sm uppercase font-black tracking-wide">
+                <FaCloudUploadAlt size={20} /> Submit solution
+              </button>
+            </>
+          ) : (
+            <button
+              className={` ${
+                loading ? "loading" : ""
+              } font-cubano text-base w-full btn  hover:bg-green-600  tracking-widest leading-5 bg-challenge  text-white sm:mb-0 `}
+              onClick={() => startChallenge()}
+            >
+              Start challenge
             </button>
-          </a>
-          <button className="w-full  btn gap-2  btn-accent btn-outline font-poppins text-sm uppercase font-black tracking-wide">
-            <FaCloudUploadAlt size={20} /> Submit solution
-          </button>
+          )}
         </div>
       </div>
     </div>
