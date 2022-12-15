@@ -1,3 +1,4 @@
+import axios from "axios";
 import { createContext } from "react";
 import styled from "styled-components";
 const ChallengeContext = createContext();
@@ -21,8 +22,34 @@ export const ChallengeProvider = ({ children }) => {
       font-size: 10px;
     }
   `;
+
+
+// start a new challenge
+  const startChallenge = (challengeId, userId) => {
+    const data = {
+      challengeId: challengeId,
+      userId: userId,
+    };
+    console.log(data);
+    axios
+      .post("http://localhost:5000/challenge/start_challenge", data)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+// Check if the challenge has already been started
+
+  const checkIfStarted = (challengeId, userID)=>{
+    
+  }
+
   const value = {
     ChallengeLevel,
+    startChallenge,
   };
   return (
     <ChallengeContext.Provider value={value}>

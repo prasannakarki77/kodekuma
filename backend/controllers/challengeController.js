@@ -59,9 +59,10 @@ const startChallenge = asyncHandler(async (req, res) => {
     challengeId: req.body.challengeId,
     userId: req.body.userId,
   });
+  console.log(data);
   data
     .save()
-    .then((res) => {
+    .then(() => {
       res.status(201).json({ success: true, msg: "Challenge started" });
     })
     .catch((e) => {

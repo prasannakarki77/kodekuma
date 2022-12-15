@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 
 const Challenge = () => {
   const { id } = useParams();
-  const { ChallengeLevel } = useContext(ChallengeContext);
+  const { ChallengeLevel, startChallenge } = useContext(ChallengeContext);
   const [challenge, setChallenge] = useState({});
   const [requirements, setRequirements] = useState([]);
   const [challengeStarted, setChallengeStarted] = useState(false);
@@ -28,7 +28,7 @@ const Challenge = () => {
       });
   }, []);
 
-  const startChallenge = () => {
+  const startChallengeHandler = () => {
     console.log("ddsfsd");
     console.log(user);
     if (user.length === 0) {
@@ -44,6 +44,8 @@ const Challenge = () => {
       });
       return;
     }
+    startChallenge(challenge._id, user.id);
+
     setLoading(true);
 
     setTimeout(() => setChallengeStarted(true), 2000);
@@ -120,7 +122,7 @@ const Challenge = () => {
               className={` ${
                 loading ? "loading" : ""
               } font-cubano text-base w-full btn  hover:bg-green-600  tracking-widest leading-5 bg-challenge  text-white sm:mb-0 `}
-              onClick={() => startChallenge()}
+              onClick={() => startChallengeHandler()}
             >
               Start challenge
             </button>
