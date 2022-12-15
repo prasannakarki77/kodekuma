@@ -1,9 +1,11 @@
 import axios from "axios";
+import { useState } from "react";
 import { createContext } from "react";
 import styled from "styled-components";
 const ChallengeContext = createContext();
 
 export const ChallengeProvider = ({ children }) => {
+  const [challengeStarted, setChallengeStarted] = useState(false);
   const ChallengeLevel = styled.div`
     display: inline-block;
     text-transform: capitalize;
@@ -23,8 +25,7 @@ export const ChallengeProvider = ({ children }) => {
     }
   `;
 
-
-// start a new challenge
+  // start a new challenge
   const startChallenge = (challengeId, userId) => {
     const data = {
       challengeId: challengeId,
@@ -41,15 +42,35 @@ export const ChallengeProvider = ({ children }) => {
       });
   };
 
-// Check if the challenge has already been started
+  // Check if the challenge has already been started
 
-  const checkIfStarted = (challengeId, userID)=>{
-    
-  }
+  const checkIfStarted = (challengeId, userId) => {
+    console.log(challengeId);
+    console.log(userId);
+    axios
+      .get(
+        `http://localhost:5000/challenge/check_if_started/${userId}/${challengeId}`
+      )
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200) {
+          console.log(true);
+          setChallengeStarted(true);
+        }
+        console.log(res);
+      })
+      .catch((e) => {
+        console.log(e);
+        setChallengeStarted(false);
+      });
+  };
 
   const value = {
     ChallengeLevel,
     startChallenge,
+    checkIfStarted,
+    challengeStarted,
+    setChallengeStarted,
   };
   return (
     <ChallengeContext.Provider value={value}>

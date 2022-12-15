@@ -73,9 +73,40 @@ const startChallenge = asyncHandler(async (req, res) => {
     });
 });
 
+const checkIfStarted = asyncHandler(async (req, res) => {
+  UserChallenge.find({
+    $and: [
+      { challengeId: req.params.challengeId },
+      { userId: req.params.userId },
+    ],
+  })
+    .then((userChallenge) => {
+      console.log(userChallenge);
+      if (userChallenge.length) {
+        res.status(200).json({
+          success: true,
+          msg: "Challenge has already been started",
+          challengeId: req.params.challengeId,
+        });
+      } else {
+        res.status(404).json({
+          success: false,
+          msg: "Challenge not started",
+          challengeId: req.params.challengeId,
+        });
+      }
+    })
+    .catch((e) => {
+      res.status(400).json({
+        msg: e,
+      });
+    });
+});
+
 module.exports = {
   insertChallenge,
   getChallenges,
   getChallenge,
   startChallenge,
+  checkIfStarted,
 };

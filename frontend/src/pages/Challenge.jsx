@@ -11,10 +11,16 @@ import { toast } from "react-toastify";
 
 const Challenge = () => {
   const { id } = useParams();
-  const { ChallengeLevel, startChallenge } = useContext(ChallengeContext);
+  const {
+    ChallengeLevel,
+    startChallenge,
+    challengeStarted,
+    setChallengeStarted,
+    checkIfStarted,
+  } = useContext(ChallengeContext);
   const [challenge, setChallenge] = useState({});
   const [requirements, setRequirements] = useState([]);
-  const [challengeStarted, setChallengeStarted] = useState(false);
+  // const [challengeStarted, setChallengeStarted] = useState(false);
   const [loading, setLoading] = useState(false);
   const { user } = useContext(UserContext);
 
@@ -25,8 +31,14 @@ const Challenge = () => {
         console.log(res.data.data[0]);
         setChallenge(res.data.data[0]);
         setRequirements(res.data.data[0].requirements);
+
+        console.log(res.data.data[0]._id);
+        checkIfStarted(res.data.data[0]._id, user.id);
+      })
+      .catch((e) => {
+        console.log(e);
       });
-  }, []);
+  }, [user]);
 
   const startChallengeHandler = () => {
     console.log("ddsfsd");
