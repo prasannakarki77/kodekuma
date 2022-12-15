@@ -1,5 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const Challenge = require("../models/challengeModel");
+const UserChallenge = require("../models/userChallengeModel");
 const insertChallenge = asyncHandler(async (req, res) => {
   const data = new Challenge({
     challenge: req.body.challenge,
@@ -10,11 +11,11 @@ const insertChallenge = asyncHandler(async (req, res) => {
     points: req.body.points,
     type: req.body.type,
     figma_link: req.body.figma_link,
-    number:req.body.number
+    number: req.body.number,
   });
   data
     .save()
-    .then(() => {
+    .then((res) => {
       res
         .status(201)
         .json({ msg: "Challenge added successfully", success: true });
@@ -53,8 +54,27 @@ const getChallenge = asyncHandler(async (req, res) => {
     });
 });
 
+const startChallenge = asyncHandler(async (req, res) => {
+  const data = new UserChallenge({
+    challengeId: req.body.challengeId,
+    userId: req.body.userId,
+  });
+  data
+    .save()
+    .then((res) => {
+      res.status(201).json({ success: true, msg: "Challenge started" });
+    })
+    .catch((e) => {
+      res.status(400).json({
+        msg: e,
+        success: false,
+      });
+    });
+});
+
 module.exports = {
   insertChallenge,
   getChallenges,
   getChallenge,
+  startChallenge,
 };
