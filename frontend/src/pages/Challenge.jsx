@@ -42,9 +42,9 @@ const Challenge = () => {
 
   const startChallengeHandler = () => {
     if (user.length === 0) {
-      toast.warning(" Please Sign In with github . ", {
+      toast.warning(" Please Sign In with github. ", {
         position: "top-right",
-        autoClose: 5000,
+        autoClose: 2000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
