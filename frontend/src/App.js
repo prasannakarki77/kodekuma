@@ -20,7 +20,7 @@ function App() {
       {" "}
       <ToastContainer
         position="top-right"
-        autoClose={5000}
+        autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
@@ -28,10 +28,9 @@ function App() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="dark"
       />
-      <ChallengeProvider>
-        <UserProvider>
+      <UserProvider>
+        <ChallengeProvider>
           <BrowserRouter>
             <Navbar />
             <ScrollToTop />
@@ -49,8 +48,8 @@ function App() {
             </Routes>
             <Footer />
           </BrowserRouter>
-        </UserProvider>
-      </ChallengeProvider>
+        </ChallengeProvider>
+      </UserProvider>
     </>
   );
 }

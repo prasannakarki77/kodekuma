@@ -8,7 +8,7 @@ import { FaCloudUploadAlt } from "react-icons/fa";
 import axios from "axios";
 import UserContext from "../context/UserContext";
 import { toast } from "react-toastify";
-
+import start_coding from "../assets/start_coding.svg";
 const Challenge = () => {
   const { id } = useParams();
   const {
@@ -20,7 +20,7 @@ const Challenge = () => {
   } = useContext(ChallengeContext);
   const [challenge, setChallenge] = useState({});
   const [requirements, setRequirements] = useState([]);
-  // const [challengeStarted, setChallengeStarted] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const { user } = useContext(UserContext);
 
@@ -41,10 +41,8 @@ const Challenge = () => {
   }, [user]);
 
   const startChallengeHandler = () => {
-    console.log("ddsfsd");
-    console.log(user);
     if (user.length === 0) {
-      toast.warning(" Please Sign In first. ", {
+      toast.warning(" Please Sign In with github . ", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -57,10 +55,10 @@ const Challenge = () => {
       return;
     }
     startChallenge(challenge._id, user.id);
-
     setLoading(true);
-
     setTimeout(() => setChallengeStarted(true), 2000);
+    console.log(showModal);
+    setTimeout(() => setShowModal(true), 2000);
   };
 
   return (
@@ -140,6 +138,27 @@ const Challenge = () => {
             </button>
           )}
         </div>
+        <input
+          type="checkbox"
+          id="my-modal-4"
+          className="modal-toggle"
+          checked={showModal}
+        />
+        <label
+          htmlFor="my-modal-4"
+          className="modal cursor-pointer"
+          onClick={() => setShowModal(false)}
+        >
+          <label className="modal-box relative" htmlFor="">
+            <label
+              htmlFor="my-modal-3"
+              className="btn btn-sm btn-circle absolute right-2 top-2"
+            >
+              ✕
+            </label>
+            <img src={start_coding} alt="start_coding" />
+          </label>
+        </label>
       </div>
     </div>
   );
