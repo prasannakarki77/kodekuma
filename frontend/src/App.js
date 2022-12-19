@@ -14,6 +14,7 @@ import Resources from "./pages/Resources";
 import WebChallenges from "./pages/WebChallenges";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Profile from "./pages/Profile";
 function App() {
   return (
     <>
@@ -43,6 +44,7 @@ function App() {
               </Route>
               <Route path="/challenge/:id" element={<Challenge />} />
               <Route path="/resources" element={<Resources />} />
+              <Route path="/profile" element={<Profile />} />
               <Route path="/notfound" element={<NotFound />} />
               <Route path="/*" element={<NotFound />} />
             </Routes>
