@@ -14,7 +14,7 @@ const Profile = () => {
   return (
     <div className=" px-4">
       <div className="max-w-[1300px] mx-auto">
-        <div className="bg-base-200 sm:p-10 p-4 flex gap-8 md:flex-row flex-col justify-center">
+        <div className="bg-base-200 sm:p-10 p-4 flex gap-8 md:flex-row flex-col justify-center mb-8">
           <img
             src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
             alt="profile_img"
@@ -115,6 +115,32 @@ const Profile = () => {
                 <FaLinkedin />{" "}
               </a>
             </div>
+          </div>
+        </div>
+        <div className=" flex gap-6 items-start">
+          <div className=" w-96 ">
+            <div className="bg-base-200 p-7 mb-8">
+              <h1 className="font-cubano text-xl flex items-center gap-2 mb-5">
+                Certificates{" "}
+                <AiFillSafetyCertificate
+                  className="  text-green-400 "
+                  size={26}
+                />
+              </h1>
+              <p>No certificates yet</p>
+            </div>
+            <div className="bg-base-200 p-7 ">
+              <h1 className="font-cubano text-xl flex items-center gap-2 mb-5">
+                Badges <HiBadgeCheck className=" text-accent " size={26} />
+              </h1>
+              <p>No badges yet</p>
+            </div>
+          </div>
+          <div className="bg-base-200 p-7 w-full ">
+            <h1 className="font-cubano text-xl flex items-center gap-2 mb-5">
+              Solutions{" "}
+            </h1>
+            <p>No solution available.</p>
           </div>
         </div>
       </div>
