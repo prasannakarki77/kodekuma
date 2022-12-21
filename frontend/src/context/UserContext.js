@@ -20,6 +20,7 @@ export const UserProvider = ({ children }) => {
         })
         .then((resObject) => {
           setUser(resObject.user);
+          localStorage.setItem("user", JSON.stringify(resObject.user));
         })
         .catch((err) => {
           console.log(err);

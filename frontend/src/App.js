@@ -1,5 +1,5 @@
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import ScrollToTop from "./scrollToTop/ScrollToTop";
+import ScrollToTop from "./config/ScrollToTop";
 import ChallengeList from "./components/ChallengeList";
 import Footer from "./components/layout/Footer";
 import Navbar from "./components/layout/Navbar";
@@ -15,6 +15,7 @@ import WebChallenges from "./pages/WebChallenges";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Profile from "./pages/Profile";
+import PrivateRoute from "./config/PrivateRoute";
 function App() {
   return (
     <>
@@ -44,7 +45,14 @@ function App() {
               </Route>
               <Route path="/challenge/:id" element={<Challenge />} />
               <Route path="/resources" element={<Resources />} />
-              <Route path="/profile" element={<Profile />} />
+              <Route
+                path="/profile"
+                element={
+                  <PrivateRoute>
+                    <Profile />
+                  </PrivateRoute>
+                }
+              />
               <Route path="/notfound" element={<NotFound />} />
               <Route path="/*" element={<NotFound />} />
             </Routes>

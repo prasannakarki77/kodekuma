@@ -15,6 +15,7 @@ const Navbar = () => {
   };
   const logout = () => {
     window.open("http://localhost:5000/auth/logout", "_self");
+    localStorage.clear();
   };
   const { user } = useContext(UserContext);
   return (

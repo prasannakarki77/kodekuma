@@ -9,20 +9,27 @@ import {
   FaLinkedin,
   FaCodepen,
 } from "react-icons/fa";
+import { useContext } from "react";
+import UserContext from "../context/UserContext";
 
 const Profile = () => {
+  // const { user } = useContext(UserContext);
+  const user = JSON.parse(localStorage.getItem("user"));
+
   return (
     <div className=" px-4">
       <div className="max-w-[1300px] mx-auto">
         <div className="bg-base-200 sm:p-10 p-4 flex gap-8 md:flex-row flex-col justify-center mb-8">
-          <img
-            src="https://images.unsplash.com/flagged/photo-1570612861542-284f4c12e75f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
-            alt="profile_img"
-            className=" md:w-60 w-full object-cover "
-          />
+          {
+            <img
+              src={user.photos[0].value}
+              alt="profile_img"
+              className=" md:w-72 w-full object-cover "
+            />
+          }
           <div className="flex flex-col gap-4">
             <h1 className="text-2xl font-raleway text-primary-content font-bold flex gap-3 items-center">
-              prasannakarki77{" "}
+              {user.displayName}
               <a
                 href="https://github.com/prasannakarki77"
                 target="_blank"
@@ -32,14 +39,14 @@ const Profile = () => {
                 <BsGithub />
               </a>
             </h1>
-            <p className=" text-base font-medium">
+            <p className=" text-base font-medium mb-4">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
               habitant sapien leo sodales tellus molestie arcu consectetur.
               Neque, metus leo fames habitasse fames facilisis gravida. Orci,
               bibendum quisque malesuada nulla elit quam leo.
             </p>
 
-            <div className="stats shadow max-w-lg  ">
+            {/* <div className="stats shadow max-w-lg mb-4 ">
               <div className="stat sm:p-2 md:p-6 ">
                 <div className="stat-title sm:text-base text-xs text font-bold">
                   Badges
@@ -76,8 +83,42 @@ const Profile = () => {
                   10 <TiArrowSortedUp size={25} className="text-secondary" />
                 </div>
               </div>
-            </div>
+            </div> */}
+            <div className="stats shadow">
+              <div className="stat">
+                <div className="stat-figure text-secondary">
+                  <HiBadgeCheck size={35} className=" text-accent " />
+                </div>
+                <div className="stat-title"> Badges</div>
+                <div className="stat-value">31K</div>
+              </div>
 
+              <div className="stat">
+                <div className="stat-figure text-secondary">
+                  <AiTwotoneStar size={35} className="text-orange-500" />
+                </div>
+                <div className="stat-title">Stars</div>
+                <div className="stat-value">42</div>
+              </div>
+
+              <div className="stat">
+                <div className="stat-figure text-secondary">
+                  <AiFillSafetyCertificate
+                    size={35}
+                    className=" text-green-400 "
+                  />
+                </div>
+                <div className="stat-title">Certificates</div>
+                <div className="stat-value">20</div>
+              </div>
+              <div className="stat">
+                <div className="stat-figure text-secondary">
+                  <TiArrowSortedUp size={35} className="text-secondary" />
+                </div>
+                <div className="stat-title">Upvotes</div>
+                <div className="stat-value">11</div>
+              </div>
+            </div>
             <div className=" flex gap-4 text-primary-content items-center">
               <a
                 href="https://github.com/prasannakarki77"
@@ -118,8 +159,8 @@ const Profile = () => {
           </div>
         </div>
         <div className=" flex gap-6 items-start">
-          <div className=" w-96 ">
-            <div className="bg-base-200 p-7 mb-8">
+          <div className=" md:w-72 w-full ">
+            <div className="bg-base-200 p-7 mb-8 ">
               <h1 className="font-cubano text-xl flex items-center gap-2 mb-5">
                 Certificates{" "}
                 <AiFillSafetyCertificate
