@@ -11,11 +11,25 @@ import {
 } from "react-icons/fa";
 import { useContext } from "react";
 import UserContext from "../context/UserContext";
-
+import { useEffect } from "react";
+import { useState } from "react";
+import axios from "axios";
 const Profile = () => {
   // const { user } = useContext(UserContext);
-  const user = JSON.parse(localStorage.getItem("user"));
 
+  const user = JSON.parse(localStorage.getItem("user"));
+  // const profile = JSON.parse(localStorage.getItem("profile"));
+  const [profile, setProfile] = useState({});
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/user/profile/" + user.id)
+      .then((res) => {
+        setProfile(res.data.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, []);
   return (
     <div className=" px-4">
       <div className="max-w-[1300px] mx-auto">
@@ -90,7 +104,7 @@ const Profile = () => {
                   <HiBadgeCheck size={35} className=" text-accent " />
                 </div>
                 <div className="stat-title"> Badges</div>
-                <div className="stat-value">31K</div>
+                <div className="stat-value">{profile?.stats?.badges}</div>
               </div>
 
               <div className="stat">
@@ -98,7 +112,7 @@ const Profile = () => {
                   <AiTwotoneStar size={35} className="text-orange-500" />
                 </div>
                 <div className="stat-title">Stars</div>
-                <div className="stat-value">42</div>
+                <div className="stat-value">{profile?.stats?.stars}</div>
               </div>
 
               <div className="stat">
@@ -109,14 +123,14 @@ const Profile = () => {
                   />
                 </div>
                 <div className="stat-title">Certificates</div>
-                <div className="stat-value">20</div>
+                <div className="stat-value">{profile?.stats?.certificates}</div>
               </div>
               <div className="stat">
                 <div className="stat-figure text-secondary">
                   <TiArrowSortedUp size={35} className="text-secondary" />
                 </div>
                 <div className="stat-title">Upvotes</div>
-                <div className="stat-value">11</div>
+                <div className="stat-value">{profile?.stats?.upvotes}</div>
               </div>
             </div>
             <div className=" flex gap-4 text-primary-content items-center">

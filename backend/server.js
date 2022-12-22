@@ -14,7 +14,7 @@ const app = express();
 const authRoute = require("./routes/authRoutes");
 const resourceRoute = require("./routes/resourceRoutes");
 const challengeRoute = require("./routes/challengeRoutes");
-
+const userRoute = require("./routes/userRoutes");
 // Connect to database
 connectDB();
 
@@ -42,6 +42,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/auth", authRoute);
 app.use("/resource", resourceRoute);
 app.use("/challenge", challengeRoute);
+app.use("/user", userRoute);
 
 app.use(express.static(__dirname + "/uploads"));
 
