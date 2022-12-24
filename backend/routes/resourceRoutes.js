@@ -1,20 +1,13 @@
 const express = require("express");
 const router = express.Router();
+const upload = require("../config/upload");
 
-const Resource = require("../models/resourceModel");
-router.get("/get", (req, res) => {
-  Resource.find()
-    .then((resource) => {
-      res.status(201).json({
-        success: true,
-        data: resource,
-      });
-    })
-    .catch((e) => {
-      res.status(400).json({
-        msg: e,
-      });
-    });
-});
+const {
+  insertResource,
+  getResources,
+} = require("../controllers/resourceController");
+
+router.post("/insert", upload.single("r_img"), insertResource);
+router.get("/get", getResources);
 
 module.exports = router;

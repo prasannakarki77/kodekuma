@@ -56,9 +56,7 @@ const Resources = () => {
         <div className="flex flex-col justify-center items-center sm:justify-between  flex-wrap md:flex-row">
           {resources.map(
             (resource) =>
-              resource.type === "desktop" && (
-                <ResourceCard resource={resource} />
-              )
+              resource.type === "ui/ux" && <ResourceCard resource={resource} />
           )}
         </div>
       </div>
