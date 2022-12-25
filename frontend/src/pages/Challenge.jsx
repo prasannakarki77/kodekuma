@@ -9,6 +9,7 @@ import axios from "axios";
 import UserContext from "../context/UserContext";
 import { toast } from "react-toastify";
 import start_coding from "../assets/start_coding.svg";
+import { Link } from "react-router-dom";
 const Challenge = () => {
   const { id } = useParams();
   const {
@@ -123,9 +124,11 @@ const Challenge = () => {
                   <CgFigma size={20} /> Figma Design
                 </button>
               </a>
-              <button className="w-full  btn gap-2  btn-accent btn-outline font-poppins text-sm uppercase font-black tracking-wide">
-                <FaCloudUploadAlt size={20} /> Submit solution
-              </button>
+              <Link to={`/solution_submit/${id}`}>
+                <button className="w-full  btn gap-2  btn-accent btn-outline font-poppins text-sm uppercase font-black tracking-wide">
+                  <FaCloudUploadAlt size={20} /> Submit solution
+                </button>
+              </Link>
             </>
           ) : (
             <button
