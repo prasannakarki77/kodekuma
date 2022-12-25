@@ -15,7 +15,7 @@ const insertChallenge = asyncHandler(async (req, res) => {
   });
   data
     .save()
-    .then((res) => {
+    .then(() => {
       res
         .status(201)
         .json({ msg: "Challenge added successfully", success: true });

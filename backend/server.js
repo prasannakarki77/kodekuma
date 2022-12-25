@@ -15,6 +15,7 @@ const authRoute = require("./routes/authRoutes");
 const resourceRoute = require("./routes/resourceRoutes");
 const challengeRoute = require("./routes/challengeRoutes");
 const userRoute = require("./routes/userRoutes");
+const solutionRoute = require("./routes/solutionRoutes");
 // Connect to database
 connectDB();
 
@@ -43,6 +44,7 @@ app.use("/auth", authRoute);
 app.use("/resource", resourceRoute);
 app.use("/challenge", challengeRoute);
 app.use("/user", userRoute);
+app.use("/solution", solutionRoute);
 
 app.use(express.static(__dirname + "/uploads"));
 
