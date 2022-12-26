@@ -65,12 +65,28 @@ export const ChallengeProvider = ({ children }) => {
       });
   };
 
+  // Solution submit
+
+  const updateChallengeStatus = (challengeId, userId) => {
+    axios
+      .put(
+        `http://localhost:5000/challenge/status_update/${userId}/${challengeId}`
+      )
+      .then((res) => {
+        console.log(res.status);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
   const value = {
     ChallengeLevel,
     startChallenge,
     checkIfStarted,
     challengeStarted,
     setChallengeStarted,
+    updateChallengeStatus,
   };
   return (
     <ChallengeContext.Provider value={value}>

@@ -1,8 +1,10 @@
 import { createContext, useEffect, useState } from "react";
+import axios from "axios";
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState([]);
+  const [profile, setProfile] = useState({});
   useEffect(() => {
     const getUser = () => {
       fetch("http://localhost:5000/auth/login/success", {
@@ -21,6 +23,7 @@ export const UserProvider = ({ children }) => {
         .then((resObject) => {
           setUser(resObject.user);
           localStorage.setItem("user", JSON.stringify(resObject.user));
+          getUserId(resObject.user.id);
         })
         .catch((err) => {
           console.log(err);
@@ -28,7 +31,18 @@ export const UserProvider = ({ children }) => {
     };
     getUser();
   }, []);
-  const value = { user, setUser };
+
+  const getUserId = (id) => {
+    axios
+      .get("http://localhost:5000/user/profile/" + id)
+      .then((res) => {
+        setProfile(res.data.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+  const value = { user, setUser, profile };
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
 

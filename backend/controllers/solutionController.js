@@ -3,11 +3,12 @@ const Solution = require("../models/solutionModel");
 
 const uploadSolution = asyncHandler(async (req, res) => {
   const files = req.files;
+
   let arr = [];
   files.map((file) => {
     arr.push(file.filename);
   });
-  console.log(files);
+  console.log(req.files);
   const data = new Solution({
     title: req.body.title,
     description: req.body.description,

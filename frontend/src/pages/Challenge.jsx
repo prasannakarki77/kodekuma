@@ -18,12 +18,13 @@ const Challenge = () => {
     challengeStarted,
     setChallengeStarted,
     checkIfStarted,
+    
   } = useContext(ChallengeContext);
   const [challenge, setChallenge] = useState({});
   const [requirements, setRequirements] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { user } = useContext(UserContext);
+  const { user, profile } = useContext(UserContext);
 
   useEffect(() => {
     axios
@@ -34,12 +35,12 @@ const Challenge = () => {
         setRequirements(res.data.data[0].requirements);
 
         console.log(res.data.data[0]._id);
-        checkIfStarted(res.data.data[0]._id, user.id);
+        checkIfStarted(res.data.data[0]._id, profile._id);
       })
       .catch((e) => {
         console.log(e);
       });
-  }, [user]);
+  }, [user, profile]);
 
   const startChallengeHandler = () => {
     if (user.length === 0) {
@@ -55,7 +56,7 @@ const Challenge = () => {
       });
       return;
     }
-    startChallenge(challenge._id, user.id);
+    startChallenge(challenge._id, profile._id);
     setLoading(true);
     setTimeout(() => setChallengeStarted(true), 2000);
     console.log(showModal);

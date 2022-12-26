@@ -10,18 +10,22 @@ const User = mongoose.Schema({
     required: true,
   },
   stats: {
-    badges: {
-      type: Number,
-      default: 0,
-    },
+    badges: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
     stars: {
       type: Number,
       default: 0,
     },
-    certificates: {
-      type: Number,
-      default: 0,
-    },
+    certificates: [
+      {
+        type: String,
+        required: true,
+      },
+    ],
     upvotes: {
       type: Number,
       default: 0,

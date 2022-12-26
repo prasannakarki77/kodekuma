@@ -104,7 +104,9 @@ const Profile = () => {
                   <HiBadgeCheck size={35} className=" text-accent " />
                 </div>
                 <div className="stat-title"> Badges</div>
-                <div className="stat-value">{profile?.stats?.badges}</div>
+                <div className="stat-value">
+                  {profile?.stats?.badges.length}
+                </div>
               </div>
 
               <div className="stat">
@@ -123,7 +125,9 @@ const Profile = () => {
                   />
                 </div>
                 <div className="stat-title">Certificates</div>
-                <div className="stat-value">{profile?.stats?.certificates}</div>
+                <div className="stat-value">
+                  {profile?.stats?.certificates.length}
+                </div>
               </div>
               <div className="stat">
                 <div className="stat-figure text-secondary">

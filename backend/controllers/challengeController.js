@@ -103,10 +103,37 @@ const checkIfStarted = asyncHandler(async (req, res) => {
     });
 });
 
+const updateChallengeStatus = asyncHandler(async (req, res) => {
+  UserChallenge.updateOne(
+    {
+      $and: [
+        { challengeId: req.params.challengeId },
+        { userId: req.params.userId },
+      ],
+    },
+    {
+      status: "completed",
+    }
+  )
+    .then(() => {
+      res.status(200).json({
+        msg: "Challenge status completed",
+        success: true,
+      });
+    })
+    .catch((e) => {
+      res.status(400).json({
+        msg: e,
+        success: false,
+      });
+    });
+});
+
 module.exports = {
   insertChallenge,
   getChallenges,
   getChallenge,
   startChallenge,
   checkIfStarted,
+  updateChallengeStatus,
 };
