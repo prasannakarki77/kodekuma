@@ -18,7 +18,6 @@ const Challenge = () => {
     challengeStarted,
     setChallengeStarted,
     checkIfStarted,
-    
   } = useContext(ChallengeContext);
   const [challenge, setChallenge] = useState({});
   const [requirements, setRequirements] = useState([]);
@@ -30,11 +29,8 @@ const Challenge = () => {
     axios
       .get("http://localhost:5000/challenge/get_challenge/" + id)
       .then((res) => {
-        console.log(res.data.data[0]);
         setChallenge(res.data.data[0]);
         setRequirements(res.data.data[0].requirements);
-
-        console.log(res.data.data[0]._id);
         checkIfStarted(res.data.data[0]._id, profile._id);
       })
       .catch((e) => {

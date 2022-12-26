@@ -20,7 +20,8 @@ const SolutionSubmit = () => {
   const [demoUrl, setDemoUrl] = useState("");
   const [repoUrl, setRepoUrl] = useState("");
   const [screenshots, setScreenshots] = useState([]);
-  const { updateChallengeStatus } = useContext(ChallengeContext);
+
+  const { updateChallengeStatus, rewardStars } = useContext(ChallengeContext);
   useEffect(() => {
     axios
       .get("http://localhost:5000/challenge/get_challenge/" + id)
@@ -69,6 +70,8 @@ const SolutionSubmit = () => {
             theme: "dark",
           });
           updateChallengeStatus(challengeId, userId);
+
+          rewardStars(userId, challenge.points);
         }
       })
       .catch((e) => {

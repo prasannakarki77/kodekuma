@@ -45,19 +45,15 @@ export const ChallengeProvider = ({ children }) => {
   // Check if the challenge has already been started
 
   const checkIfStarted = (challengeId, userId) => {
-    console.log(challengeId);
-    console.log(userId);
     axios
       .get(
         `http://localhost:5000/challenge/check_if_started/${userId}/${challengeId}`
       )
       .then((res) => {
-        console.log(res);
         if (res.status === 200) {
           console.log(true);
           setChallengeStarted(true);
         }
-        console.log(res);
       })
       .catch((e) => {
         console.log(e);
@@ -80,6 +76,22 @@ export const ChallengeProvider = ({ children }) => {
       });
   };
 
+
+  const rewardBadges = (userId) => {
+    
+  };
+
+  const rewardStars = (userId, stars) => {
+    axios
+      .put(`http://localhost:5000/user/reward_stars/${userId}/${stars}`)
+      .then((res) => {
+        console.log(res.status);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
   const value = {
     ChallengeLevel,
     startChallenge,
@@ -87,6 +99,7 @@ export const ChallengeProvider = ({ children }) => {
     challengeStarted,
     setChallengeStarted,
     updateChallengeStatus,
+    rewardStars,
   };
   return (
     <ChallengeContext.Provider value={value}>

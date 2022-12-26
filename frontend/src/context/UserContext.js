@@ -23,7 +23,7 @@ export const UserProvider = ({ children }) => {
         .then((resObject) => {
           setUser(resObject.user);
           localStorage.setItem("user", JSON.stringify(resObject.user));
-          getUserId(resObject.user.id);
+          getUserProfile(resObject.user.id);
         })
         .catch((err) => {
           console.log(err);
@@ -32,7 +32,7 @@ export const UserProvider = ({ children }) => {
     getUser();
   }, []);
 
-  const getUserId = (id) => {
+  const getUserProfile = (id) => {
     axios
       .get("http://localhost:5000/user/profile/" + id)
       .then((res) => {

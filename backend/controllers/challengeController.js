@@ -81,7 +81,6 @@ const checkIfStarted = asyncHandler(async (req, res) => {
     ],
   })
     .then((userChallenge) => {
-      console.log(userChallenge);
       if (userChallenge.length) {
         res.status(200).json({
           success: true,
