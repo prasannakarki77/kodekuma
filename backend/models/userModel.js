@@ -13,7 +13,6 @@ const User = mongoose.Schema({
     badges: [
       {
         type: String,
-        required: true,
       },
     ],
     stars: {
@@ -23,7 +22,6 @@ const User = mongoose.Schema({
     certificates: [
       {
         type: String,
-        required: true,
       },
     ],
     upvotes: {
