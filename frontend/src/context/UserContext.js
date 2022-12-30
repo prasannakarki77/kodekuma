@@ -5,6 +5,7 @@ const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState([]);
   const [profile, setProfile] = useState({});
+
   useEffect(() => {
     const getUser = () => {
       fetch("http://localhost:5000/auth/login/success", {
@@ -22,7 +23,7 @@ export const UserProvider = ({ children }) => {
         })
         .then((resObject) => {
           setUser(resObject.user);
-          localStorage.setItem("user", JSON.stringify(resObject.user));
+          sessionStorage.setItem("user", JSON.stringify(resObject.user));
           getUserProfile(resObject.user.id);
         })
         .catch((err) => {

@@ -17,8 +17,7 @@ import axios from "axios";
 const Profile = () => {
   // const { user } = useContext(UserContext);
 
-  const user = JSON.parse(localStorage.getItem("user"));
-  // const profile = JSON.parse(localStorage.getItem("profile"));
+  const user = JSON.parse(sessionStorage.getItem("user"));
   const [profile, setProfile] = useState({});
   useEffect(() => {
     axios

@@ -12,7 +12,7 @@ import ChallengeContext from "../context/ChallengeContext";
 const SolutionSubmit = () => {
   const { id } = useParams();
   const [challenge, setChallenge] = useState({});
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(sessionStorage.getItem("user"));
   const [challengeId, setChallengeId] = useState(id);
   const [userId, setUserId] = useState("");
   const [title, setTitle] = useState("");
