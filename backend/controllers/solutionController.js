@@ -3,7 +3,6 @@ const Solution = require("../models/solutionModel");
 
 const uploadSolution = asyncHandler(async (req, res) => {
   const files = req.files;
-
   let arr = [];
   files.map((file) => {
     arr.push(file.filename);
@@ -35,4 +34,25 @@ const uploadSolution = asyncHandler(async (req, res) => {
     });
 });
 
-module.exports = { uploadSolution };
+const getSolution = asyncHandler(async (req, res) => {
+  Solution.findOne({
+    $and: [
+      { userId: req.params.userId },
+      { challengeId: req.params.challengeId },
+    ],
+  })
+    .then((solution) => {
+      res.status(200).json({
+        success: true,
+        data: solution,
+      });
+    })
+    .catch((e) => {
+      res.status(404).json({
+        success: false,
+        msg: "solution not found",
+      });
+    });
+});
+
+module.exports = { uploadSolution, getSolution };
