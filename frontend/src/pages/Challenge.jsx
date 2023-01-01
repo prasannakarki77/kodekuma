@@ -4,7 +4,7 @@ import ChallengeContext from "../context/ChallengeContext";
 import web_challenge from "../assets/web-challenge.svg";
 import point_icon from "../assets/star.svg";
 import { CgFigma } from "react-icons/cg";
-import { FaCloudUploadAlt } from "react-icons/fa";
+import { FaCloudUploadAlt, FaFileCode } from "react-icons/fa";
 import axios from "axios";
 import UserContext from "../context/UserContext";
 import { toast } from "react-toastify";
@@ -18,6 +18,8 @@ const Challenge = () => {
     challengeStarted,
     setChallengeStarted,
     checkIfStarted,
+    checkIfSolutionSubmitted,
+    solutionExists,
   } = useContext(ChallengeContext);
   const [challenge, setChallenge] = useState({});
   const [requirements, setRequirements] = useState([]);
@@ -32,6 +34,7 @@ const Challenge = () => {
         setChallenge(res.data.data[0]);
         setRequirements(res.data.data[0].requirements);
         checkIfStarted(res.data.data[0]._id, profile._id);
+        checkIfSolutionSubmitted(res.data.data[0]._id, profile._id);
       })
       .catch((e) => {
         console.log(e);
@@ -113,29 +116,44 @@ const Challenge = () => {
             <li className="mb-3 ml-4">Check figma design and start coding</li>
             <li className="mb-3 ml-4">Submit the solution</li>
           </ol>
-          {challengeStarted ? (
+          {solutionExists ? (
+            <Link to={`/solution/${id}`}>
+              <button className="w-full  btn gap-2  btn-primary  font-poppins text-sm uppercase font-black tracking-wide">
+                <FaFileCode size={20} /> View solution
+              </button>
+            </Link>
+          ) : (
             <>
               {" "}
-              <a href={challenge.figma_link} target="_blank" rel="noreferrer">
-                <button className="w-full  btn gap-2  btn-secondary font-poppins text-sm uppercase font-black tracking-wide mb-5">
-                  <CgFigma size={20} /> Figma Design
+              {challengeStarted ? (
+                <>
+                  {" "}
+                  <a
+                    href={challenge.figma_link}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <button className="w-full  btn gap-2  btn-secondary font-poppins text-sm uppercase font-black tracking-wide mb-5">
+                      <CgFigma size={20} /> Figma Design
+                    </button>
+                  </a>
+                  <Link to={`/solution_submit/${id}`}>
+                    <button className="w-full  btn gap-2  btn-accent btn-outline font-poppins text-sm uppercase font-black tracking-wide">
+                      <FaCloudUploadAlt size={20} /> Submit solution
+                    </button>
+                  </Link>
+                </>
+              ) : (
+                <button
+                  className={` ${
+                    loading ? "loading" : ""
+                  } font-cubano text-base w-full btn  hover:bg-green-600  tracking-widest leading-5 bg-challenge  text-white sm:mb-0 `}
+                  onClick={() => startChallengeHandler()}
+                >
+                  Start challenge
                 </button>
-              </a>
-              <Link to={`/solution_submit/${id}`}>
-                <button className="w-full  btn gap-2  btn-accent btn-outline font-poppins text-sm uppercase font-black tracking-wide">
-                  <FaCloudUploadAlt size={20} /> Submit solution
-                </button>
-              </Link>
+              )}
             </>
-          ) : (
-            <button
-              className={` ${
-                loading ? "loading" : ""
-              } font-cubano text-base w-full btn  hover:bg-green-600  tracking-widest leading-5 bg-challenge  text-white sm:mb-0 `}
-              onClick={() => startChallengeHandler()}
-            >
-              Start challenge
-            </button>
           )}
         </div>
         <input

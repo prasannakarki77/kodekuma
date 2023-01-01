@@ -6,6 +6,7 @@ const ChallengeContext = createContext();
 
 export const ChallengeProvider = ({ children }) => {
   const [challengeStarted, setChallengeStarted] = useState(false);
+  const [solutionExists, setSolutionExists] = useState(false);
   const ChallengeLevel = styled.div`
     display: inline-block;
     text-transform: capitalize;
@@ -60,9 +61,28 @@ export const ChallengeProvider = ({ children }) => {
         setChallengeStarted(false);
       });
   };
+  const checkIfSolutionSubmitted = (challengeId, userId) => {
+    console.log(challengeId);
+    console.log(userId);
+    axios
+      .get(`http://localhost:5000/solution/get/${userId}/${challengeId}`)
+      .then((res) => {
+        console.log(res);
+        if (res.status === 200 && res.data.data !== null) {
+          console.log(res);
+          setSolutionExists(true);
+        }
+        // else {
+        //   setSolutionExists(false);
+        // }
+      })
+      .catch((e) => {
+        console.log(e);
+        setSolutionExists(false);
+      });
+  };
 
   // Solution submit
-
   const updateChallengeStatus = (challengeId, userId) => {
     axios
       .put(
@@ -76,9 +96,45 @@ export const ChallengeProvider = ({ children }) => {
       });
   };
 
+  const rewardBadges = () => {
+    let stars;
+    let badge;
+    let userId;
+    const user = JSON.parse(sessionStorage.getItem("user"));
+    axios
+      .get("http://localhost:5000/user/profile/" + user.id)
+      .then((res) => {
+        stars = res.data.data.stats.stars;
+        userId = res.data.data._id;
 
-  const rewardBadges = (userId) => {
-    
+        if (stars === 5) {
+          badge = "coder";
+        }
+        if (stars === 45) {
+          badge = "challenger";
+        }
+        if (stars >= 75) {
+          badge = "champion";
+        }
+        console.log("badge");
+        console.log(badge);
+        if (badge !== undefined) {
+          axios
+            .put(`http://localhost:5000/user/reward_badge/${userId}/${badge}`)
+            .then((res) => {
+              if (res.status === 200) {
+                console.log("badge", badge);
+                return badge;
+              }
+            })
+            .catch((e) => {
+              console.log(e);
+            });
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   const rewardStars = (userId, stars) => {
@@ -96,10 +152,13 @@ export const ChallengeProvider = ({ children }) => {
     ChallengeLevel,
     startChallenge,
     checkIfStarted,
+    checkIfSolutionSubmitted,
     challengeStarted,
     setChallengeStarted,
     updateChallengeStatus,
     rewardStars,
+    rewardBadges,
+    solutionExists,
   };
   return (
     <ChallengeContext.Provider value={value}>
