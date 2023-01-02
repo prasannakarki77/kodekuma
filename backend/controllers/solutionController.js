@@ -50,7 +50,7 @@ const getSolution = asyncHandler(async (req, res) => {
     .catch((e) => {
       res.status(404).json({
         success: false,
-        msg: "solution not found",
+        msg: e,
       });
     });
 });

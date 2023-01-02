@@ -2,7 +2,7 @@ import { Navigate } from "react-router-dom";
 
 function PrivateRoute({ children }) {
   var isAuth;
-  if (localStorage.getItem("user")) {
+  if (sessionStorage.getItem("user")) {
     isAuth = true;
   } else {
     isAuth = false;

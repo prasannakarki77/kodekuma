@@ -9,6 +9,9 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import { useContext } from "react";
 import ChallengeContext from "../context/ChallengeContext";
+import Confetti from "react-confetti";
+import start_coding from "../assets/start_coding.svg";
+import RewardModal from "../components/RewardModal";
 const SolutionSubmit = () => {
   const { id } = useParams();
   const [challenge, setChallenge] = useState({});
@@ -20,8 +23,9 @@ const SolutionSubmit = () => {
   const [demoUrl, setDemoUrl] = useState("");
   const [repoUrl, setRepoUrl] = useState("");
   const [screenshots, setScreenshots] = useState([]);
-
-  const { updateChallengeStatus, rewardStars } = useContext(ChallengeContext);
+  const [showModal, setShowModal] = useState(false);
+  const { updateChallengeStatus, rewardStars, rewardBadges } =
+    useContext(ChallengeContext);
   useEffect(() => {
     axios
       .get("http://localhost:5000/challenge/get_challenge/" + id)
@@ -66,12 +70,16 @@ const SolutionSubmit = () => {
       .post("http://localhost:5000/solution/upload", data)
       .then((res) => {
         if (res.status === 201) {
-          toast.success("Solution Submitted", {
-            theme: "dark",
-          });
           updateChallengeStatus(challengeId, userId);
 
           rewardStars(userId, challenge.points);
+
+          rewardBadges();
+          setShowModal(true);
+
+          toast.success("Solution Submitted", {
+            theme: "dark",
+          });
         }
       })
       .catch((e) => {
@@ -204,6 +212,29 @@ const SolutionSubmit = () => {
           </div>
         </form>
       </div>
+      <RewardModal showModal={showModal} stars={challenge.points} />
+      {/* <input
+        type="checkbox"
+        id="my-modal-4"
+        className="modal-toggle"
+        checked={showModal}
+      />
+      <label htmlFor="my-modal-4" className="modal cursor-pointer">
+        <Confetti />
+        <label className="modal-box relative" htmlFor="">
+          <label
+            htmlFor="my-modal-3"
+            className="btn btn-sm btn-circle absolute right-2 top-2"
+          >
+            ✕
+          </label>
+          <img src={start_coding} alt="start_coding" />
+          <button onClick={() => window.alert("clicked")}>
+            Go to Solution
+          </button>
+          <p>{challenge.points}</p>
+        </label>
+      </label> */}
     </div>
   );
 };

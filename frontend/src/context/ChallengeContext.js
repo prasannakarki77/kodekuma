@@ -7,6 +7,7 @@ const ChallengeContext = createContext();
 export const ChallengeProvider = ({ children }) => {
   const [challengeStarted, setChallengeStarted] = useState(false);
   const [solutionExists, setSolutionExists] = useState(false);
+  const [badge, setBadge] = useState("");
   const ChallengeLevel = styled.div`
     display: inline-block;
     text-transform: capitalize;
@@ -71,10 +72,9 @@ export const ChallengeProvider = ({ children }) => {
         if (res.status === 200 && res.data.data !== null) {
           console.log(res);
           setSolutionExists(true);
+        } else {
+          setSolutionExists(false);
         }
-        // else {
-        //   setSolutionExists(false);
-        // }
       })
       .catch((e) => {
         console.log(e);
@@ -124,8 +124,10 @@ export const ChallengeProvider = ({ children }) => {
             .then((res) => {
               if (res.status === 200) {
                 console.log("badge", badge);
+                setBadge(badge);
                 return badge;
               }
+              setBadge("");
             })
             .catch((e) => {
               console.log(e);
@@ -159,6 +161,7 @@ export const ChallengeProvider = ({ children }) => {
     rewardStars,
     rewardBadges,
     solutionExists,
+    badge,
   };
   return (
     <ChallengeContext.Provider value={value}>
