@@ -23,6 +23,7 @@ const Solution = mongoose.Schema({
   },
   upvotes: {
     type: Number,
+    default: 0,
   },
   challengeId: {
     type: mongoose.Schema.Types.ObjectId,
@@ -34,6 +35,17 @@ const Solution = mongoose.Schema({
     ref: "User",
     required: true,
   },
+  feedback: [
+    {
+      userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+      feedbackText: {
+        type: String,
+      },
+    },
+  ],
 });
 
 module.exports = mongoose.model("Solution", Solution);
