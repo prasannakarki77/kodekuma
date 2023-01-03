@@ -3,6 +3,9 @@ import { BsGithub } from "react-icons/bs";
 import { HiBadgeCheck } from "react-icons/hi";
 import { AiTwotoneStar, AiFillSafetyCertificate } from "react-icons/ai";
 import { TiArrowSortedUp } from "react-icons/ti";
+import challenger_badge from "../assets/challenger_badge.png";
+import coder_badge from "../assets/coder_badge.png";
+import champion_badge from "../assets/champion_badge.png";
 import {
   FaTwitterSquare,
   FaFacebookSquare,
@@ -191,7 +194,21 @@ const Profile = () => {
               <h1 className="font-cubano text-xl flex items-center gap-2 mb-5">
                 Badges <HiBadgeCheck className=" text-accent " size={26} />
               </h1>
-              <p>No badges yet</p>
+              <p className="flex gap-1 flex-wrap">
+                {profile?.stats?.badges.map((badge) => (
+                  <>
+                    <img
+                      src={
+                        (badge === "challenger" && challenger_badge) ||
+                        (badge === "coder" && coder_badge) ||
+                        (badge === "champion" && champion_badge)
+                      }
+                      alt="point"
+                      width={80}
+                    />
+                  </>
+                ))}
+              </p>
             </div>
           </div>
           <div className="bg-base-200 p-7 w-full ">

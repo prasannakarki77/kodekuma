@@ -17,6 +17,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Profile from "./pages/Profile";
 import PrivateRoute from "./config/PrivateRoute";
 import SolutionSubmit from "./pages/SolutionSubmit";
+import Solution from "./pages/Solution";
 function App() {
   return (
     <>
@@ -46,6 +47,7 @@ function App() {
               </Route>
               <Route path="/challenge/:id" element={<Challenge />} />
               <Route path="/solution_submit/:id" element={<SolutionSubmit />} />
+              <Route path="/solution/:id" element={<Solution />} />
               <Route path="/resources" element={<Resources />} />
               <Route
                 path="/profile"
