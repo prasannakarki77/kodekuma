@@ -10,15 +10,19 @@ import { CgWebsite } from "react-icons/cg";
 import { TiArrowSortedUp } from "react-icons/ti";
 import { MdRateReview } from "react-icons/md";
 import { FaStar } from "react-icons/fa";
+import { format } from "timeago.js";
 const Solution = () => {
   const { id } = useParams();
   const { profile } = useContext(UserContext);
-  const { getSolution, solution } = useContext(ChallengeContext);
+  const { getSolution, solution, getChallenge, challenge } =
+    useContext(ChallengeContext);
   useEffect(() => {
     if (profile._id !== undefined) {
       getSolution(profile?._id, id);
     }
-    console.log(solution);
+    getChallenge(id);
+    console.log(profile);
+    console.log(challenge);
   }, [profile]);
   return (
     <div className=" sm:px-8 p-2  mx-auto flex items-start gap-6 sm:flex-row flex-col">
@@ -26,19 +30,28 @@ const Solution = () => {
         <Link to={"/challenge/" + id}>
           <div className="flex justify-between items-center  mb-2 ">
             <h1 className="font-cubano text-lg text-primary-content">
-              #1 Doorhub Challenge
+              #{challenge?.number} {challenge?.challenge}
             </h1>
             <CgWebsite className="text-primary-content" size={20} />
           </div>
 
           <div className="overflow-hidden rounded ">
             <img
-              src={`https://www.w3schools.com/css/img_lights.jpg`}
+              src={`http://localhost:5000/${challenge?.image}`}
               alt="challenge_img"
               className="hover:scale-105 transition-all  "
             />
           </div>
         </Link>
+        <div className="flex justify-end gap-2">
+          {" "}
+          <span className="flex items-center px-3 rounded-lg bg-[#455A64] text-primary-content">
+            {solution?.upvotes} <TiArrowSortedUp size={30} />
+          </span>
+          <span className="flex items-center px-3 gap-1 rounded-lg bg-[#455A64] text-primary-content">
+            {solution?.feedback.length} <MdRateReview size={20} />
+          </span>
+        </div>
         <button className="btn btn-primary capitalize text-base w-full flex items-center gap-1 font-bold justify-center">
           {" "}
           <TiArrowSortedUp size={30} /> Upvote
@@ -59,43 +72,63 @@ const Solution = () => {
                 />
               </div>
               <span className=" font-semibold text-lg text-primary-content ">
-                prasanna.karki77
+                {profile?.username}
               </span>
               <span className="font-bold flex items-center gap-1">
-                10 <FaStar color="#FA6900" />{" "}
+                {profile?.stats?.stars} <FaStar color="#FA6900" />{" "}
               </span>
             </div>
-            <div>2023/10/03</div>
+            <div className="sm:text-sm  text-xs">
+              {format(solution?.createdAt)}
+            </div>
           </div>
           <h1 className="text-lg font-bold text-primary-content mt-6">
-            Doorhub challenge completed
+            {solution?.title}
           </h1>
           <p className="text-base mt-4 text-justify mb-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Augue purus
-            egestas a commodo sit proin morbi. Sed sagittis eget netus nibh id
-            ullamcorper diamLorem ipsum dolor sit amet, consectetur adipiscing
-            elit. Augue purus egestas a commodo sit proin morbi. Sed sagittis
-            eget netus nibh id ullamcorper diam
+            {solution?.description}
           </p>
           <div className=" bg-base-100 rounded">
             <div className="p-3 flex justify-between items-center">
               <h1 className="text-xl font-bold">Preview</h1>
               <div className=" flex gap-4 justify-end">
-                <button className="btn btn-secondary capitalize font-bold font-poppins">
-                  Demo
-                </button>
-                <button className="btn btn-outline btn-secondary font-bold font-poppins capitalize">
-                  Code
-                </button>
+                <a href={solution?.demoUrl} target="_blank" rel="noreferrer">
+                  <button className="btn btn-secondary capitalize font-bold font-poppins">
+                    Demo
+                  </button>
+                </a>
+                <a href={solution?.repoUrl} target="_blank" rel="noreferrer">
+                  <button className="btn btn-secondary btn-outline capitalize font-bold font-poppins">
+                    Code
+                  </button>
+                </a>
               </div>
             </div>
 
             <div>
               <iframe
                 title="demo"
-                src="https://zerotomastery.io/resources/"
-                className="w-full h-[70vh]"
+                src={solution?.demoUrl}
+                className="w-full h-[70vh] mb-5"
               ></iframe>
+            </div>
+            <div className="carousel w-full">
+              {solution?.screenshots.map((image) => (
+                <div id={image} className="carousel-item w-full">
+                  <img
+                    src={`http://localhost:5000/${image}`}
+                    className="w-full"
+                    alt="solution_img"
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="flex justify-center w-full py-2 gap-2">
+              {solution?.screenshots.map((image, i) => (
+                <a href={`#${image}`} className="btn btn-xs">
+                  {i + 1}
+                </a>
+              ))}
             </div>
           </div>
         </div>
@@ -125,7 +158,7 @@ const Solution = () => {
                 </button>
               </div>
             </div>
-            <p className="bg-base-300 p-2 mt-4 rounded-lg">
+            <p className="bg-[#455A64] p-2 mt-4 rounded-lg text-primary-content">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Rhoncus
               amet et, vitae nec, aliquam. Sit congue sit vitae in id
               ullamcorper pharetra malesuada lacus. Pellentesque eget enim ut
