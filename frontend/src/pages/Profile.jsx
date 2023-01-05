@@ -17,8 +17,9 @@ import UserContext from "../context/UserContext";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
+import ChallengeContext from "../context/ChallengeContext";
 const Profile = () => {
-  // const { user } = useContext(UserContext);
+  const { userSolutions, getUserSolutions } = useContext(ChallengeContext);
 
   const user = JSON.parse(sessionStorage.getItem("user"));
   const [profile, setProfile] = useState({});
@@ -27,6 +28,7 @@ const Profile = () => {
       .get("http://localhost:5000/user/profile/" + user.id)
       .then((res) => {
         setProfile(res.data.data);
+        getUserSolutions(res.data.data._id);
       })
       .catch((e) => {
         console.log(e);
@@ -215,7 +217,7 @@ const Profile = () => {
             <h1 className="font-cubano text-xl flex items-center gap-2 mb-5">
               Solutions{" "}
             </h1>
-            <p>No solution available.</p>
+            <p>{userSolutions?.[0]?._id}</p>
           </div>
         </div>
       </div>

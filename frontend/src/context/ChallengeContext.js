@@ -10,6 +10,7 @@ export const ChallengeProvider = ({ children }) => {
   const [challenge, setChallenge] = useState();
   const [solution, setSolution] = useState();
   const [badge, setBadge] = useState("");
+  const [userSolutions, setUserSolutions] = useState();
 
   const ChallengeLevel = styled.div`
     display: inline-block;
@@ -171,8 +172,20 @@ export const ChallengeProvider = ({ children }) => {
     axios
       .get("http://localhost:5000/challenge/get_challenge/" + challengeId)
       .then((res) => {
-        console.log(res.data.data[0]);
         setChallenge(res.data.data[0]);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  const getUserSolutions = (userId) => {
+    console.log(userId);
+    axios
+      .get(`http://localhost:5000/solution/get/${userId}`)
+      .then((res) => {
+        console.log(res);
+        setUserSolutions(res.data.data);
       })
       .catch((e) => {
         console.log(e);
@@ -195,6 +208,8 @@ export const ChallengeProvider = ({ children }) => {
     solution,
     challenge,
     getChallenge,
+    getUserSolutions,
+    userSolutions,
   };
   return (
     <ChallengeContext.Provider value={value}>

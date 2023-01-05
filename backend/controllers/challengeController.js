@@ -128,13 +128,11 @@ const updateChallengeStatus = asyncHandler(async (req, res) => {
     });
 });
 
-const getCompletedChallenge = asyncHandler(async(req,res)=>{
+const getCompletedChallenge = asyncHandler(async (req, res) => {
   UserChallenge.find({
     userId: userId,
-    
-  })
-})
-
+  });
+});
 
 module.exports = {
   insertChallenge,

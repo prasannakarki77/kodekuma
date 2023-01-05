@@ -1,5 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const Solution = require("../models/solutionModel");
+const { ObjectId } = require("mongodb");
 
 const uploadSolution = asyncHandler(async (req, res) => {
   const files = req.files;
@@ -55,10 +56,8 @@ const getSolution = asyncHandler(async (req, res) => {
     });
 });
 
-const getUserSolutions= asyncHandler(async (req, res) => {
-  Solution.find({
-    userId: req.params.userId,
-  })
+const getUserSolutions = asyncHandler(async (req, res) => {
+  Solution.find({ userId: req.params.userId })
     .then((solutions) => {
       res.status(200).json({
         success: true,
@@ -69,6 +68,7 @@ const getUserSolutions= asyncHandler(async (req, res) => {
       res.status(404).json({
         success: false,
         msg: e,
+        params: req.params.userId,
       });
     });
 });
