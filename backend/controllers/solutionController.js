@@ -55,4 +55,22 @@ const getSolution = asyncHandler(async (req, res) => {
     });
 });
 
-module.exports = { uploadSolution, getSolution };
+const getUserSolutions= asyncHandler(async (req, res) => {
+  Solution.find({
+    userId: req.params.userId,
+  })
+    .then((solutions) => {
+      res.status(200).json({
+        success: true,
+        data: solutions,
+      });
+    })
+    .catch((e) => {
+      res.status(404).json({
+        success: false,
+        msg: e,
+      });
+    });
+});
+
+module.exports = { uploadSolution, getSolution, getUserSolutions };
