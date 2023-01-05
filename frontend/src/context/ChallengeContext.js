@@ -10,7 +10,7 @@ export const ChallengeProvider = ({ children }) => {
   const [challenge, setChallenge] = useState();
   const [solution, setSolution] = useState();
   const [badge, setBadge] = useState("");
-  const [userSolutions, setUserSolutions] = useState();
+  const [userSolutions, setUserSolutions] = useState([]);
 
   const ChallengeLevel = styled.div`
     display: inline-block;

@@ -12,12 +12,15 @@ import {
   FaLinkedin,
   FaCodepen,
 } from "react-icons/fa";
+import { MdRateReview } from "react-icons/md";
 import { useContext } from "react";
 import UserContext from "../context/UserContext";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
+import { CgWebsite } from "react-icons/cg";
 import ChallengeContext from "../context/ChallengeContext";
+import { Link } from "react-router-dom";
 const Profile = () => {
   const { userSolutions, getUserSolutions } = useContext(ChallengeContext);
 
@@ -29,6 +32,7 @@ const Profile = () => {
       .then((res) => {
         setProfile(res.data.data);
         getUserSolutions(res.data.data._id);
+        console.log(userSolutions);
       })
       .catch((e) => {
         console.log(e);
@@ -180,7 +184,7 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <div className=" flex gap-6 items-start">
+        <div className=" flex gap-6 items-start flex-col md:flex-row">
           <div className=" md:w-72 w-full ">
             <div className="bg-base-200 p-7 mb-8 ">
               <h1 className="font-cubano text-xl flex items-center gap-2 mb-5">
@@ -213,11 +217,49 @@ const Profile = () => {
               </p>
             </div>
           </div>
-          <div className="bg-base-200 p-7 w-full ">
+          <div className="bg-base-200 sm:p-7 p-4 w-full ">
             <h1 className="font-cubano text-xl flex items-center gap-2 mb-5">
               Solutions{" "}
             </h1>
-            <p>{userSolutions?.[0]?._id}</p>
+            <div className="bg-base-100 sm:p-8 p-4 rounded flex gap-4 lg:flex-row flex-col lg:items-stretch items-center  ">
+              <div className="flex flex-col justify-between">
+                <div className=" mb-4 font-poppins ">
+                  <p className="  text-base sm:text-lg font-bold text-primary-content mb-3">
+                    Doorhub challenge completed
+                  </p>
+                  <p className=" text-sm sm:text-base">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
+                    habitant sapien leo sodales tellus molestie arcu
+                    consectetur. Neque, metus leo fames habitasse fames
+                    facilisis gravida.{" "}
+                  </p>
+                </div>
+                <div className="flex  gap-2">
+                  {" "}
+                  <span className="flex items-center px-3 rounded-lg bg-[#455A64] text-primary-content">
+                    1 <TiArrowSortedUp className=" text-base " />
+                  </span>
+                  <span className="flex items-center px-3 gap-1 rounded-lg bg-[#455A64] text-primary-content">
+                    0 <MdRateReview className=" text-base " />
+                  </span>
+                </div>
+              </div>
+
+              <div className=" md:max-w-xs md:min-w-[250px] w-full ">
+                <img
+                  src="https://static.wixstatic.com/media/ea6ac8_b6b0cbe25615488e855f515846354dda~mv2.jpg/v1/fill/w_640,h_420,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/ea6ac8_b6b0cbe25615488e855f515846354dda~mv2.jpg"
+                  alt="challenge_img"
+                />
+                <p className="font-cubano text-sm flex justify-between mt-3">
+                  #1 Doorhub challenge
+                  <span>
+                    <CgWebsite className="text-primary-content" size={20} />
+                  </span>
+                </p>
+              </div>
+            </div>
+            {userSolutions.length > 0 &&
+              userSolutions.map((solution) => <p>{solution.title}</p>)}
           </div>
         </div>
       </div>
