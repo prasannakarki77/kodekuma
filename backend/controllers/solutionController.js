@@ -58,6 +58,7 @@ const getSolution = asyncHandler(async (req, res) => {
 
 const getUserSolutions = asyncHandler(async (req, res) => {
   Solution.find({ userId: req.params.userId })
+    .populate("challengeId")
     .then((solutions) => {
       res.status(200).json({
         success: true,

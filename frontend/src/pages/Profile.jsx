@@ -221,45 +221,53 @@ const Profile = () => {
             <h1 className="font-cubano text-xl flex items-center gap-2 mb-5">
               Solutions{" "}
             </h1>
-            <div className="bg-base-100 sm:p-8 p-4 rounded flex gap-4 lg:flex-row flex-col lg:items-stretch items-center  ">
-              <div className="flex flex-col justify-between">
-                <div className=" mb-4 font-poppins ">
-                  <p className="  text-base sm:text-lg font-bold text-primary-content mb-3">
-                    Doorhub challenge completed
-                  </p>
-                  <p className=" text-sm sm:text-base">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-                    habitant sapien leo sodales tellus molestie arcu
-                    consectetur. Neque, metus leo fames habitasse fames
-                    facilisis gravida.{" "}
-                  </p>
-                </div>
-                <div className="flex  gap-2">
-                  {" "}
-                  <span className="flex items-center px-3 rounded-lg bg-[#455A64] text-primary-content">
-                    1 <TiArrowSortedUp className=" text-base " />
-                  </span>
-                  <span className="flex items-center px-3 gap-1 rounded-lg bg-[#455A64] text-primary-content">
-                    0 <MdRateReview className=" text-base " />
-                  </span>
-                </div>
-              </div>
+            <div className="flex flex-col gap-4">
+              {userSolutions.length > 0 &&
+                userSolutions.map((solution) => (
+                  <Link to={`/solution/${solution.challengeId._id}`}>
+                    <div className="bg-base-100 sm:p-8 p-4 rounded flex gap-4 justify-between lg:flex-row flex-col border border-base-100 hover:border-white transition-all ">
+                      <div className="flex flex-col justify-between">
+                        <div className=" mb-4 font-poppins ">
+                          <p className="  text-base sm:text-lg font-bold text-primary-content mb-3">
+                            {solution.title}
+                          </p>
+                          <p className=" text-sm sm:text-base">
+                            {solution.description}
+                          </p>
+                        </div>
+                        <div className="flex  gap-2">
+                          {" "}
+                          <span className="flex items-center px-3 rounded-lg bg-[#455A64] text-primary-content">
+                            {solution.upvotes}{" "}
+                            <TiArrowSortedUp className=" text-base " />
+                          </span>
+                          <span className="flex items-center px-3 gap-1 rounded-lg bg-[#455A64] text-primary-content">
+                            {solution.feedback.length}{" "}
+                            <MdRateReview className=" text-base " />
+                          </span>
+                        </div>
+                      </div>
 
-              <div className=" md:max-w-xs md:min-w-[250px] w-full ">
-                <img
-                  src="https://static.wixstatic.com/media/ea6ac8_b6b0cbe25615488e855f515846354dda~mv2.jpg/v1/fill/w_640,h_420,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/ea6ac8_b6b0cbe25615488e855f515846354dda~mv2.jpg"
-                  alt="challenge_img"
-                />
-                <p className="font-cubano text-sm flex justify-between mt-3">
-                  #1 Doorhub challenge
-                  <span>
-                    <CgWebsite className="text-primary-content" size={20} />
-                  </span>
-                </p>
-              </div>
+                      <div className=" md:max-w-xs md:min-w-[250px] w-full lg:mx-0 mx-auto ">
+                        <img
+                          src={`http://localhost:5000/${solution.challengeId.image}`}
+                          alt="challenge_img"
+                        />
+                        <p className="font-cubano text-sm flex justify-between mt-3">
+                          #{solution.challengeId.number}{" "}
+                          {solution.challengeId.challenge}
+                          <span>
+                            <CgWebsite
+                              className="text-primary-content"
+                              size={20}
+                            />
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
             </div>
-            {userSolutions.length > 0 &&
-              userSolutions.map((solution) => <p>{solution.title}</p>)}
           </div>
         </div>
       </div>
