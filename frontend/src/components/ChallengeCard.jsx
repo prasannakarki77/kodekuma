@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import ChallengeContext from "../context/ChallengeContext";
+import { ChallengeLevel } from "../components/ChallengeLevel";
+
 const ChallengeCard = ({ challengeItem }) => {
   const { _id, challenge, image, desc, difficulty, number } = challengeItem;
-  const { ChallengeLevel } = useContext(ChallengeContext);
+
   return (
     <div className="card  sm:w-80  md:w-96 lg:w-[500px] bg-base-300 shadow-xl rounded-none mb-9">
       <figure>

@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
 import { createContext } from "react";
-import styled from "styled-components";
 const ChallengeContext = createContext();
 
 export const ChallengeProvider = ({ children }) => {
@@ -11,25 +10,7 @@ export const ChallengeProvider = ({ children }) => {
   const [solution, setSolution] = useState();
   const [badge, setBadge] = useState("");
   const [userSolutions, setUserSolutions] = useState([]);
-
-  const ChallengeLevel = styled.div`
-    display: inline-block;
-    text-transform: capitalize;
-    border-radius: 29px;
-    padding: 7px 13px;
-    font-family: Poppins, sans-serif;
-    background: ${({ level }) =>
-      (level === "beginner" && "#5DB355") ||
-      (level === "intermediate" && "#721792") ||
-      (level === "advanced" && "#3C7154") ||
-      (level === "expert" && "#C51717")};
-    color: #fff;
-    font-weight: 500;
-    font-size: 14px;
-    @media (max-width: 600px) {
-      font-size: 10px;
-    }
-  `;
+  const [alreadyUpvoted, setAlreadyUpvotes] = useState(false);
 
   // start a new challenge
   const startChallenge = (challengeId, userId) => {
@@ -161,11 +142,17 @@ export const ChallengeProvider = ({ children }) => {
         if (res.status === 200 && res.data.data !== null) {
           console.log(res.data.data);
           setSolution(res.data.data);
+          if (res.data.data.upvotes.includes(userId)) {
+            setAlreadyUpvotes(true);
+          } else {
+            setAlreadyUpvotes(false);
+          }
           return res.data.data;
         }
       })
       .catch((e) => {
         console.log(e);
+        setAlreadyUpvotes(false);
       });
   };
   const getChallenge = (challengeId) => {
@@ -192,8 +179,31 @@ export const ChallengeProvider = ({ children }) => {
       });
   };
 
+  const upvote = (solutionId, userId) => {
+    axios
+      .put(`http://localhost:5000/solution/upvote/${solutionId}/${userId}`)
+      .then((res) => {
+        console.log(res);
+        setAlreadyUpvotes(true);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  const downvote = (solutionId, userId) => {
+    axios
+      .put(`http://localhost:5000/solution/downvote/${solutionId}/${userId}`)
+      .then((res) => {
+        console.log(res);
+        setAlreadyUpvotes(false);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
   const value = {
-    ChallengeLevel,
     startChallenge,
     checkIfStarted,
     checkIfSolutionSubmitted,
@@ -210,6 +220,9 @@ export const ChallengeProvider = ({ children }) => {
     getChallenge,
     getUserSolutions,
     userSolutions,
+    upvote,
+    downvote,
+    alreadyUpvoted,
   };
   return (
     <ChallengeContext.Provider value={value}>

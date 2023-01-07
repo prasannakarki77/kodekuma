@@ -7,23 +7,41 @@ import ChallengeContext from "../context/ChallengeContext";
 import UserContext from "../context/UserContext";
 import { Link } from "react-router-dom";
 import { CgWebsite } from "react-icons/cg";
-import { TiArrowSortedUp } from "react-icons/ti";
+import { TiArrowSortedUp, TiArrowSortedDown } from "react-icons/ti";
 import { MdRateReview } from "react-icons/md";
 import { FaStar } from "react-icons/fa";
 import { format } from "timeago.js";
 const Solution = () => {
   const { id } = useParams();
   const { profile } = useContext(UserContext);
-  const { getSolution, solution, getChallenge, challenge } =
-    useContext(ChallengeContext);
+  const {
+    getSolution,
+    solution,
+    getChallenge,
+    challenge,
+    upvote,
+    downvote,
+    alreadyUpvoted,
+  } = useContext(ChallengeContext);
+  const [upvoteAction, setUpvoteAction] = useState();
+
   useEffect(() => {
     if (profile._id !== undefined) {
       getSolution(profile?._id, id);
     }
     getChallenge(id);
-    console.log(profile);
-    console.log(challenge);
-  }, [profile]);
+  }, [profile, upvoteAction, alreadyUpvoted]);
+
+  const handleUpvote = () => {
+    setUpvoteAction(true);
+    upvote(solution._id, profile._id);
+  };
+
+  const handleDownvote = () => {
+    setUpvoteAction(false);
+    downvote(solution._id, profile._id);
+  };
+
   return (
     <div className=" sm:px-8 p-2  mx-auto flex items-start gap-6 sm:flex-row flex-col">
       <div className=" bg-base-300 md:max-w-[350px] sm:max-w-[280px] p-4 md:p-8 flex flex-col gap-4 rounded shadow-2xl max-w-full">
@@ -46,16 +64,30 @@ const Solution = () => {
         <div className="flex justify-end gap-2">
           {" "}
           <span className="flex items-center px-3 rounded-lg bg-[#455A64] text-primary-content">
-            {solution?.upvotes} <TiArrowSortedUp size={30} />
+            {solution?.upvotes.length} <TiArrowSortedUp size={30} />
           </span>
           <span className="flex items-center px-3 gap-1 rounded-lg bg-[#455A64] text-primary-content">
             {solution?.feedback.length} <MdRateReview size={20} />
           </span>
         </div>
-        <button className="btn btn-primary capitalize text-base w-full flex items-center gap-1 font-bold justify-center">
-          {" "}
-          <TiArrowSortedUp size={30} /> Upvote
-        </button>
+        {alreadyUpvoted ? (
+          <button
+            className="btn btn-primary capitalize text-base w-full flex items-center gap-1 font-bold justify-center"
+            onClick={handleDownvote}
+          >
+            {" "}
+            <TiArrowSortedDown size={30} /> 1
+          </button>
+        ) : (
+          <button
+            className="btn btn-primary capitalize text-base w-full flex items-center gap-1 font-bold justify-center"
+            onClick={handleUpvote}
+          >
+            {" "}
+            <TiArrowSortedUp size={30} /> Upvote
+          </button>
+        )}
+
         <button className="btn btn-primary capitalize text-base w-full flex items-center gap-1 font-bold justify-center">
           {" "}
           <MdRateReview size={20} /> Feedback
@@ -150,13 +182,13 @@ const Solution = () => {
                   10 <FaStar color="#FA6900" />{" "}
                 </span>
               </div>
-              <div className="flex gap-2 items-center">
+              {/* <div className="flex gap-2 items-center">
                 <span className="text-lg font-bold">10</span>{" "}
                 <button className="btn-primary btn btn-sm p-2">
                   {" "}
                   <TiArrowSortedUp size={20} />
                 </button>
-              </div>
+              </div> */}
             </div>
             <p className="bg-[#455A64] p-2 mt-4 rounded-lg text-primary-content">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Rhoncus

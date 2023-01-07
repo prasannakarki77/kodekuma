@@ -7,7 +7,6 @@ import mobile_challenge from "../assets/mobile-challenge.svg";
 import web_challenge from "../assets/web-challenge.svg";
 import ui_challenge from "../assets/ui-challenge.svg";
 import desktop_challenge from "../assets/desktop-challenge.svg";
-
 import { Link } from "react-router-dom";
 const Challenges = () => {
   return (

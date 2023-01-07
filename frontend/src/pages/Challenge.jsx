@@ -10,10 +10,10 @@ import UserContext from "../context/UserContext";
 import { toast } from "react-toastify";
 import start_coding from "../assets/start_coding.svg";
 import { Link } from "react-router-dom";
+import { ChallengeLevel } from "../components/ChallengeLevel";
 const Challenge = () => {
   const { id } = useParams();
   const {
-    ChallengeLevel,
     startChallenge,
     challengeStarted,
     setChallengeStarted,
