@@ -225,7 +225,7 @@ const Profile = () => {
               {userSolutions.length > 0 &&
                 userSolutions.map((solution) => (
                   <Link to={`/solution/${solution.challengeId._id}`}>
-                    <div className="bg-base-100 sm:p-8 p-4 rounded flex gap-4 justify-between lg:flex-row flex-col border border-base-100 hover:border-white transition-all ">
+                    <div className="bg-base-100 sm:p-8 p-4 flex gap-4 justify-between lg:flex-row flex-col border border-base-100 hover:border-white transition-all ">
                       <div className="flex flex-col justify-between">
                         <div className=" mb-4 font-poppins ">
                           <p className="  text-base sm:text-lg font-bold text-primary-content mb-3">

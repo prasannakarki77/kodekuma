@@ -1,5 +1,6 @@
 const asyncHandler = require("express-async-handler");
 const Solution = require("../models/solutionModel");
+const User = require("../models/userModel");
 const { ObjectId } = require("mongodb");
 
 const uploadSolution = asyncHandler(async (req, res) => {
@@ -74,4 +75,67 @@ const getUserSolutions = asyncHandler(async (req, res) => {
     });
 });
 
-module.exports = { uploadSolution, getSolution, getUserSolutions };
+const addUpvote = asyncHandler(async (req, res) => {
+  Solution.updateOne(
+    { _id: req.params.id },
+    { $push: { upvotes: req.params.userId } },
+    {
+      new: true,
+    }
+  )
+    .then(() => {
+      User.updateOne(
+        {
+          _id: req.params.userId,
+        },
+        { $inc: { "stats.upvotes": 1 } }
+      )
+        .then()
+        .catch();
+      res.status(200).json({
+        success: true,
+        msg: "upvote added",
+      });
+    })
+    .catch((e) => {
+      res.status(400).json({
+        success: false,
+        msg: e,
+      });
+    });
+});
+
+const removeUpvote = asyncHandler(async (req, res) => {
+  Solution.updateOne(
+    { _id: req.params.id },
+    { $pull: { upvotes: req.params.userId } }
+  )
+    .then(() => {
+      User.updateOne(
+        {
+          _id: req.params.userId,
+        },
+        { $inc: { "stats.upvotes": -1 } }
+      )
+        .then()
+        .catch();
+      res.status(200).json({
+        success: true,
+        msg: "upvote removed",
+      });
+    })
+    .catch((e) => {
+      res.status(400).json({
+        success: false,
+        msg: e,
+      });
+    });
+});
+
+module.exports = {
+  uploadSolution,
+  getSolution,
+  getUserSolutions,
+  addUpvote,
+  removeUpvote,
+};
