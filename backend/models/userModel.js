@@ -9,6 +9,10 @@ const User = mongoose.Schema({
     type: String,
     required: true,
   },
+  profileImg: {
+    type: String,
+    required: true,
+  },
   stats: {
     badges: [
       {

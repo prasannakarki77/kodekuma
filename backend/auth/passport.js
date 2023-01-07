@@ -23,6 +23,7 @@ passport.use(
           new User({
             username: profile.username,
             githubId: profile.id,
+            profileImg: profile.photos[0].value,
           })
             .save()
             .then((newUser) => {

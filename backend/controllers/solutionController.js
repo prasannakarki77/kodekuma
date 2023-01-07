@@ -132,10 +132,37 @@ const removeUpvote = asyncHandler(async (req, res) => {
     });
 });
 
+const addFeedback = asyncHandler(async (req, res) => {
+  Solution.updateOne(
+    { _id: req.params.id },
+    {
+      $push: {
+        feedback: {
+          userId: req.params.userId,
+          feedbackText: req.body.feedbackText,
+        },
+      },
+    }
+  )
+    .then(() => {
+      res.status(200).json({
+        success: true,
+        msg: "feedback added",
+      });
+    })
+    .catch((e) => {
+      res.status(400).json({
+        success: false,
+        msg: e,
+      });
+    });
+});
+
 module.exports = {
   uploadSolution,
   getSolution,
   getUserSolutions,
   addUpvote,
   removeUpvote,
+  addFeedback,
 };
