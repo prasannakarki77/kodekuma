@@ -11,6 +11,8 @@ import { TiArrowSortedUp, TiArrowSortedDown } from "react-icons/ti";
 import { MdRateReview } from "react-icons/md";
 import { FaStar } from "react-icons/fa";
 import { format } from "timeago.js";
+import { toast } from "react-toastify";
+import axios from "axios";
 const Solution = () => {
   const { id } = useParams();
   const { profile } = useContext(UserContext);
@@ -24,7 +26,7 @@ const Solution = () => {
     alreadyUpvoted,
   } = useContext(ChallengeContext);
   const [upvoteAction, setUpvoteAction] = useState();
-
+  const [feedbackText, setFeedbackText] = useState("");
   useEffect(() => {
     if (profile._id !== undefined) {
       getSolution(profile?._id, id);
@@ -40,6 +42,26 @@ const Solution = () => {
   const handleDownvote = () => {
     setUpvoteAction(false);
     downvote(solution._id, profile._id);
+  };
+
+  const addFeedback = (e) => {
+    e.preventDefault();
+    const data = {
+      feedbackText: feedbackText,
+    };
+    axios
+      .put(
+        `http://localhost:5000/solution/addfeedback/${solution?._id}/${profile?._id}`,
+        data
+      )
+      .then((res) => {
+        if (res.status === 200) {
+          toast.success(" Feedback added");
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
 
   return (
@@ -166,6 +188,21 @@ const Solution = () => {
         </div>
         <div className="bg-base-300 rounded shadow-2xl  p-4 md:p-8">
           <h1 className="text-xl font-bold mb-5 ">Feedbacks</h1>
+          <form onSubmit={(e) => addFeedback(e)}>
+            <textarea
+              className="textarea textarea-bordered w-full h-24"
+              placeholder="Bio"
+              onChange={(e) => setFeedbackText(e.target.value)}
+            ></textarea>
+            <div className="flex justify-end">
+              <button
+                className="btn btn-primary capitalize btn-sm ml-auto mt-3"
+                type="submit"
+              >
+                Send
+              </button>
+            </div>
+          </form>
           <div className="bg-base-100 w-full p-4 my-4 rounded ">
             <div className="flex justify-between items-center">
               <div className="avatar flex items-center gap-2">
