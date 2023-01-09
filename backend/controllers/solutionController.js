@@ -43,6 +43,7 @@ const getSolution = asyncHandler(async (req, res) => {
       { challengeId: req.params.challengeId },
     ],
   })
+    .populate("feedback.userId")
     .then((solution) => {
       res.status(200).json({
         success: true,
@@ -71,6 +72,24 @@ const getUserSolutions = asyncHandler(async (req, res) => {
         success: false,
         msg: e,
         params: req.params.userId,
+      });
+    });
+});
+
+const getAllSolutions = asyncHandler(async (req, res) => {
+  Solution.find()
+    .populate("challengeId")
+    .populate("userId")
+    .then((solutions) => {
+      res.status(200).json({
+        success: true,
+        data: solutions,
+      });
+    })
+    .catch((e) => {
+      res.status(404).json({
+        success: false,
+        msg: e,
       });
     });
 });
@@ -165,4 +184,5 @@ module.exports = {
   addUpvote,
   removeUpvote,
   addFeedback,
+  getAllSolutions,
 };
