@@ -203,7 +203,41 @@ const Solution = () => {
               </button>
             </div>
           </form>
-          <div className="bg-base-100 w-full p-4 my-4 rounded ">
+          {solution?.feedback?.map((feedback) => (
+            <div className="bg-base-100 w-full p-4 my-4 rounded ">
+              <div className="flex justify-between items-center">
+                <div className="avatar flex items-center gap-2">
+                  <div className="w-8 rounded-full">
+                    <img src={feedback.userId.profileImg} alt="profile_pic" />
+                  </div>
+                  <span className=" font-semibold text-base text-primary-content ">
+                    {feedback.userId.username}
+                  </span>
+                  <span className="font-bold flex items-center gap-1">
+                    {feedback.userId.stats.stars}
+                    <FaStar color="#FA6900" />{" "}
+                  </span>
+                </div>
+                {/* <div className="flex gap-2 items-center">
+                <span className="text-lg font-bold">10</span>{" "}
+                <button className="btn-primary btn btn-sm p-2">
+                  {" "}
+                  <TiArrowSortedUp size={20} />
+                </button>
+              </div> */}
+              </div>
+              <p className="bg-[#455A64] p-2 mt-4 rounded-lg text-primary-content">
+                {feedback.feedbackText}
+              </p>
+              {/* <p className="text-xs mt-2"> </p> */}
+              {/* <div className="flex justify-end">
+                <button className="btn btn-primary capitalize btn-sm ml-auto">
+                  Reply
+                </button>
+              </div> */}
+            </div>
+          ))}
+          {/* <div className="bg-base-100 w-full p-4 my-4 rounded ">
             <div className="flex justify-between items-center">
               <div className="avatar flex items-center gap-2">
                 <div className="w-8 rounded-full">
@@ -218,16 +252,16 @@ const Solution = () => {
                 <span className="font-bold flex items-center gap-1">
                   10 <FaStar color="#FA6900" />{" "}
                 </span>
-              </div>
-              {/* <div className="flex gap-2 items-center">
+              </div> */}
+          {/* <div className="flex gap-2 items-center">
                 <span className="text-lg font-bold">10</span>{" "}
                 <button className="btn-primary btn btn-sm p-2">
                   {" "}
                   <TiArrowSortedUp size={20} />
                 </button>
               </div> */}
-            </div>
-            <p className="bg-[#455A64] p-2 mt-4 rounded-lg text-primary-content">
+          {/* </div> */}
+          {/* <p className="bg-[#455A64] p-2 mt-4 rounded-lg text-primary-content">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Rhoncus
               amet et, vitae nec, aliquam. Sit congue sit vitae in id
               ullamcorper pharetra malesuada lacus. Pellentesque eget enim ut
@@ -239,7 +273,7 @@ const Solution = () => {
                 Reply
               </button>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
