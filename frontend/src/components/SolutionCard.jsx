@@ -16,7 +16,7 @@ const SolutionCard = ({ solution }) => {
         />
         <h1 className="font-cubano text-base text-primary-content absolute bottom-1 left-4 z-20 flex justify-between w-[90%]  ">
           <span>{solution.challengeId.challenge}</span>
-          <ChallengeLevel level={"beginner"}>
+          <ChallengeLevel level={solution.challengeId.difficulty}>
             {" "}
             {solution.challengeId.difficulty}
           </ChallengeLevel>

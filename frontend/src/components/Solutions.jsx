@@ -12,7 +12,7 @@ const Solutions = () => {
     });
   }, []);
   return (
-    <div>
+    <div className="flex justify-between gap-6  flex-wrap ">
       {allSolutions.map((solution) => (
         <SolutionCard solution={solution} />
       ))}
