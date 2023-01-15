@@ -224,7 +224,9 @@ const Profile = () => {
             <div className="flex flex-col gap-4">
               {userSolutions.length > 0 &&
                 userSolutions.map((solution) => (
-                  <Link to={`/solution/${solution.challengeId._id}`}>
+                  <Link
+                    to={`/solution/${profile?._id}/${solution.challengeId._id}`}
+                  >
                     <div className="bg-base-100 sm:p-8 p-4 flex gap-4 justify-between lg:flex-row flex-col border border-base-100 hover:border-white transition-all ">
                       <div className="flex flex-col justify-between">
                         <div className=" mb-4 font-poppins ">
@@ -238,7 +240,7 @@ const Profile = () => {
                         <div className="flex  gap-2">
                           {" "}
                           <span className="flex items-center px-3 rounded-lg bg-[#455A64] text-primary-content">
-                            {solution.upvotes}{" "}
+                            {solution.upvotes.length}{" "}
                             <TiArrowSortedUp className=" text-base " />
                           </span>
                           <span className="flex items-center px-3 gap-1 rounded-lg bg-[#455A64] text-primary-content">

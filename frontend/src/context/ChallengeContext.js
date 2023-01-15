@@ -11,7 +11,7 @@ export const ChallengeProvider = ({ children }) => {
   const [badge, setBadge] = useState("");
   const [userSolutions, setUserSolutions] = useState([]);
   const [alreadyUpvoted, setAlreadyUpvotes] = useState(false);
-
+  const [challengeNumbers, setChallengeNumbers] = useState([]);
   // start a new challenge
   const startChallenge = (challengeId, userId) => {
     const data = {
@@ -168,11 +168,17 @@ export const ChallengeProvider = ({ children }) => {
 
   const getUserSolutions = (userId) => {
     console.log(userId);
+    let numbers = [];
     axios
       .get(`http://localhost:5000/solution/get/${userId}`)
       .then((res) => {
         console.log(res);
         setUserSolutions(res.data.data);
+        res.data.data.forEach((solution) => {
+          numbers.push(solution.challengeId.number);
+        });
+        setChallengeNumbers(numbers);
+        return true;
       })
       .catch((e) => {
         console.log(e);
@@ -223,6 +229,7 @@ export const ChallengeProvider = ({ children }) => {
     upvote,
     downvote,
     alreadyUpvoted,
+    challengeNumbers,
   };
   return (
     <ChallengeContext.Provider value={value}>

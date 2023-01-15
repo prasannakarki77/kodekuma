@@ -35,6 +35,7 @@ const Challenge = () => {
         setRequirements(res.data.data[0].requirements);
         checkIfStarted(res.data.data[0]._id, profile._id);
         checkIfSolutionSubmitted(res.data.data[0]._id, profile._id);
+       
       })
       .catch((e) => {
         console.log(e);
