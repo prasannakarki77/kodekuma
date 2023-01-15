@@ -117,7 +117,7 @@ const Challenge = () => {
             <li className="mb-3 ml-4">Submit the solution</li>
           </ol>
           {solutionExists ? (
-            <Link to={`/solution/${id}`}>
+            <Link to={`/solution/${profile._id}/${id}`}>
               <button className="w-full  btn gap-2  btn-primary  font-poppins text-sm uppercase font-black tracking-wide">
                 <FaFileCode size={20} /> View solution
               </button>

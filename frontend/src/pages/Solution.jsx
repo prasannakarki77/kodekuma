@@ -14,7 +14,7 @@ import { format } from "timeago.js";
 import { toast } from "react-toastify";
 import axios from "axios";
 const Solution = () => {
-  const { id } = useParams();
+  const { user_id, challenge_id } = useParams();
   const { profile } = useContext(UserContext);
   const {
     getSolution,
@@ -28,10 +28,9 @@ const Solution = () => {
   const [upvoteAction, setUpvoteAction] = useState();
   const [feedbackText, setFeedbackText] = useState("");
   useEffect(() => {
-    if (profile._id !== undefined) {
-      getSolution(profile?._id, id);
-    }
-    getChallenge(id);
+    getSolution(user_id, challenge_id);
+
+    getChallenge(challenge_id);
   }, [profile, upvoteAction, alreadyUpvoted]);
 
   const handleUpvote = () => {
@@ -46,6 +45,11 @@ const Solution = () => {
 
   const addFeedback = (e) => {
     e.preventDefault();
+    if (profile._id === undefined) {
+      toast.error("Please Sign In to add a feedback.", {
+        theme: "dark",
+      });
+    }
     const data = {
       feedbackText: feedbackText,
     };
@@ -67,7 +71,7 @@ const Solution = () => {
   return (
     <div className=" sm:px-8 p-2  mx-auto flex items-start gap-6 sm:flex-row flex-col">
       <div className=" bg-base-300 md:max-w-[350px] sm:max-w-[280px] p-4 md:p-8 flex flex-col gap-4 rounded shadow-2xl max-w-full">
-        <Link to={"/challenge/" + id}>
+        <Link to={"/challenge/" + challenge_id}>
           <div className="flex justify-between items-center  mb-2 ">
             <h1 className="font-cubano text-lg text-primary-content">
               #{challenge?.number} {challenge?.challenge}
@@ -120,16 +124,13 @@ const Solution = () => {
           <div className=" flex justify-between items-center">
             <div className="avatar flex items-center gap-2">
               <div className="w-10 rounded-full">
-                <img
-                  src="https://placeimg.com/192/192/people"
-                  alt="profile_pic"
-                />
+                <img src={solution?.userId.profileImg} alt="profile_pic" />
               </div>
               <span className=" font-semibold text-lg text-primary-content ">
-                {profile?.username}
+                {solution?.userId.username}
               </span>
               <span className="font-bold flex items-center gap-1">
-                {profile?.stats?.stars} <FaStar color="#FA6900" />{" "}
+                {solution?.userId.stats?.stars} <FaStar color="#FA6900" />{" "}
               </span>
             </div>
             <div className="sm:text-sm  text-xs">

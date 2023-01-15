@@ -50,7 +50,9 @@ const SolutionCard = ({ solution }) => {
 
         <h1 className="text-primary-content font-bold">{solution.title}</h1>
         <p className="text-sm">{solution.description}</p>
-        <Link to={`/solution/${solution.challengeId._id}`}>
+        <Link
+          to={`/solution/${solution.userId._id}/${solution.challengeId._id}`}
+        >
           <button className="w-full  btn gap-2  btn-primary  font-poppins text-sm uppercase font-black tracking-wide">
             <FaFileCode size={20} /> View solution
           </button>

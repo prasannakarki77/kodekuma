@@ -44,6 +44,7 @@ const getSolution = asyncHandler(async (req, res) => {
     ],
   })
     .populate("feedback.userId")
+    .populate("userId")
     .then((solution) => {
       res.status(200).json({
         success: true,

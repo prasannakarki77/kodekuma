@@ -47,7 +47,10 @@ function App() {
               </Route>
               <Route path="/challenge/:id" element={<Challenge />} />
               <Route path="/solution_submit/:id" element={<SolutionSubmit />} />
-              <Route path="/solution/:id" element={<Solution />} />
+              <Route
+                path="/solution/:user_id/:challenge_id"
+                element={<Solution />}
+              />
               <Route path="/resources" element={<Resources />} />
               <Route
                 path="/profile"
