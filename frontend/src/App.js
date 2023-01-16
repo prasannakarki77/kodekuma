@@ -18,6 +18,7 @@ import Profile from "./pages/Profile";
 import PrivateRoute from "./config/PrivateRoute";
 import SolutionSubmit from "./pages/SolutionSubmit";
 import Solution from "./pages/Solution";
+import Leaderboard from "./pages/Leaderboard";
 function App() {
   return (
     <>
@@ -52,6 +53,7 @@ function App() {
                 element={<Solution />}
               />
               <Route path="/resources" element={<Resources />} />
+              <Route path="/leaderboard" element={<Leaderboard />} />
               <Route
                 path="/profile"
                 element={

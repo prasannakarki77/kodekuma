@@ -63,8 +63,28 @@ const rewardStars = asyncHandler(async (req, res) => {
     });
 });
 
+const getAllUsers = asyncHandler(async (req, res) => {
+  User.find()
+    .sort({
+      "stats.stars": "desc",
+    })
+    .then((users) => {
+      res.status(200).json({
+        success: true,
+        data: users,
+      });
+    })
+    .catch((e) => {
+      res.status(404).json({
+        success: false,
+        msg: e,
+      });
+    });
+});
+
 module.exports = {
   getProfile,
   rewardBadge,
   rewardStars,
+  getAllUsers,
 };
