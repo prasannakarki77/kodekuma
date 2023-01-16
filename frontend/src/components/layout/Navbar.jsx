@@ -50,7 +50,7 @@ const Navbar = () => {
             </span>
           </Link>
           <Link
-            to="/about"
+            to="/leaderboard"
             className="btn btn-ghost  btn-md rounded-btn font-cubano text-lg  tracking-wider"
           >
             <MdLeaderboard className="text-2xl " />{" "}
