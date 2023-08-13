@@ -3,9 +3,20 @@
 <h1 align="center">Kodekuma</h1>
 
 <p align="center"> React | Tailwind CSS | DaisyUI | NodeJs | ExpressJS | MongoDB</p>
-<!-- TABLE OF CONTENTS -->
 
-## Overview
+## Features
+
+- Sign In/Up through Github
+- Web Development Challenges
+- Start a challenge and submit solution to get rewards and badges.
+- View others solution, give feedbacks and upvotes.
+- Compete in getting the top spots on the leaderboard.
+
+## Figma Design
+[Kodekuma Design](https://www.figma.com/file/wQEWc9QvjXjJwAUT9MmlbI/kodekuma?type=design&node-id=0%3A1&mode=design&t=AJm922gqSvHcJRKJ-1)
+
+
+## Screenshots
 
 ![image](https://github.com/prasannakarki77/kodekuma/assets/63549402/c18ab5c5-126e-4b2d-8f26-120ea7450679)
 
@@ -28,13 +39,3 @@
 ![image](https://github.com/prasannakarki77/kodekuma/assets/63549402/6cfcde13-30a0-4899-abbe-754872a7df0f)
 
 
-## Features
-
-- Sign In/Up through Github
-- Web Development Challenges
-- Start a challenge and submit solution to get rewards and badges.
-- View others solution, give feedbacks and upvotes.
-- Compete in getting the top spots on the leaderboard.
-
-## Figma Design
-[Kodekuma Design](https://www.figma.com/file/wQEWc9QvjXjJwAUT9MmlbI/kodekuma?type=design&node-id=0%3A1&mode=design&t=AJm922gqSvHcJRKJ-1)
